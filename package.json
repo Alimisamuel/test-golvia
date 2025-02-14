@@ -1,0 +1,105 @@
+{
+  "name": "golvia-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "align-agatha2main": "git checkout work-by-agatha && git pull && git checkout main && git pull && git merge work-by-agatha && git push && git checkout work-by-agatha",
+    "align-sammy2main": "git checkout work-by-sammy && git pull && git checkout main && git pull && git merge work-by-sammy && git push && git checkout work-by-sammy",
+    "merge-agatha2main": "git checkout work-by-agatha && git pull && git checkout main && git pull && git merge work-by-agatha && git push && git checkout work-by-agatha",
+    "merge-sammy2main": "git checkout work-by-sammy && git pull && git checkout main && git pull && git merge work-by-sammy && git push && git checkout work-by-sammy",
+    "prepare": "husky install",
+    "lint": "eslint . --fix"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "overrides": {
+    "typescript": "^5.6.3"
+  },
+  "lint-staged": {
+    "src/**/*.+(js|jsx|ts|tsx)": [
+      "eslint --fix"
+    ],
+    "*.+(json|css|md)": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.5",
+    "@mui/material": "^6.1.5",
+    "@mui/styles": "^6.1.6",
+    "@react-oauth/google": "^0.12.1",
+    "@reduxjs/toolkit": "^2.5.0",
+    "@testing-library/jest-dom": "^6.6.2",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.7.9",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/react-helmet": "^6.1.11",
+    "aos": "^2.3.4",
+    "axios": "^1.7.7",
+    "clsx": "^2.1.1",
+    "crypto-js": "^4.2.0",
+    "framer-motion": "^11.11.9",
+    "lodash.throttle": "^4.1.1",
+    "mui-one-time-password-input": "^2.0.3",
+    "notistack": "^3.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-dropzone": "^14.2.10",
+    "react-helmet-async": "^2.0.5",
+    "react-hook-form": "^7.53.1",
+    "react-icons": "^5.3.0",
+    "react-player": "^2.16.0",
+    "react-redux": "^9.1.2",
+    "react-router-dom": "^6.27.0",
+    "react-router-hash-link": "^2.4.3",
+    "react-scripts": "5.0.1",
+    "react-spinners": "^0.14.1",
+    "react-toastify": "^10.0.6",
+    "react-webcam": "^7.2.0",
+    "redux-persist": "^6.0.0",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
+    "web-vitals": "^4.2.4"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@iconify/tailwind": "^1.1.3",
+    "@types/aos": "^3.0.7",
+    "@types/crypto-js": "^4.2.2",
+    "@types/lodash.throttle": "^4.1.9",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/react-router-hash-link": "^2.4.9",
+    "@types/sockjs-client": "^1.5.4",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "eslint": "^9.13.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-security": "^3.0.1",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3"
+  }
+}
