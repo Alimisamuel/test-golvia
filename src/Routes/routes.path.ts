@@ -30,8 +30,10 @@ export const PATHS = {
   PRIVACY_POLICY: "/privacy-policy",
   TERMS_OF_USE: "/term-of-use",
   COOKIE_POLICY: "/cookie-policy",
+  BLOG: "/sportssphere",
   CHALLENGE: { LEADERBOARD: "/challenge/leaderboard" },
 ACTIVITY_STAT:{
-MY_PROFILE_VIEWS :"/activities/profile-views"
+MY_PROFILE_VIEWS :"/activities/profile-views",
+
 }
 };

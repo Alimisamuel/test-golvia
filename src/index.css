@@ -121,3 +121,13 @@ input[type="number"]::-webkit-outer-spin-button {
     transform: translateX(-100%);
   }
 }
+
+
+.two-line-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

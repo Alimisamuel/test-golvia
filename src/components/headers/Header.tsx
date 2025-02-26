@@ -1,5 +1,5 @@
 import Logo from "../../assets/logo/logo-white.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RiHome3Fill, RiArrowDownSLine } from "react-icons/ri";
 import {
   Avatar,
@@ -25,10 +25,11 @@ import { MdPeopleAlt } from "react-icons/md";
 import { PATHS } from "../../Routes/routes.path";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import { Layout } from "constants/layers";
-import { useAppDispatch } from "store/hooks";
-import { logOut } from "pages/auth/slice";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { logOut, selectToken } from "pages/auth/slice";
 import Search from "./Search";
 import { IoMdFootball } from "react-icons/io";
+import { ReactComponent as BlogIcon } from "assets/icons/blog.svg";
 import { ReactComponent as LeaderboardIcon } from "assets/icons/leaderboard.svg";
 import clsx from "clsx";
 import useNotificationSocketListener from "utils/WebSocket/useNotificationSocket";
@@ -41,6 +42,7 @@ const Header = ({ path }: HeaderProps) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { firstName, asset } = useAuthDetails();
+  const location = useLocation()
   // POPPER
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
@@ -61,14 +63,17 @@ const Header = ({ path }: HeaderProps) => {
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(logOut());
-    navigate(PATHS.LOGIN);
+    navigate(PATHS.LOGIN,{ state: { redirectTo: location.pathname } });
   };
 
-  const {email} = useAuthDetails();
+  const { email } = useAuthDetails();
 
-const baseUrl = process.env.REACT_APP_BASE_URL; 
+  // const baseUrl = process.env.REACT_APP_BASE_URL;
 
-  const { notifications} = useNotificationSocketListener(email || "")
+  //   const { notifications} = useNotificationSocketListener(email || "")
+
+  const token = useAppSelector(selectToken);
+  const isAuthenticated = token || window.localStorage.getItem("authToken");
 
   return (
     <>
@@ -81,46 +86,47 @@ const baseUrl = process.env.REACT_APP_BASE_URL;
         mr="auto"
         ml="auto"
       >
-        <div className="flex items-center">
-          <Link to={PATHS.FEED} className="mr-4">
-            <img src={Logo} alt="logo" />
-          </Link>
-
-          <Search />
-        </div>
-        {!isMobile && (
-          <Stack
-            direction="row"
-            paddingY={1 / 2}
-            paddingX={1.5}
-            alignItems="center"
-            borderRadius={30}
-            spacing={4}
-            width="fit-content"
-            display={{ xs: "none", md: "flex" }}
-            className="lg:-ml-30 bg-quaternary"
-          >
-            {NAVROUTES.map(({ Icon, pathname, name }) => (
-              <Link
-                key={pathname}
-                to={pathname}
-                className={`flex items-center text-sm text-senary space-x-1 ${
-                  pathname === path &&
-                  "bg-primary rounded-3xl text-white py-1 px-2"
-                } `}
-              >
-                <Icon className="text-base" />
-                <Typography variant="p$14">{name}</Typography>
+        {isAuthenticated ? (
+          <>
+            <div className="flex items-center">
+              <Link to={PATHS.FEED} className="mr-4">
+                <img src={Logo} alt="logo" />
               </Link>
-            ))}
-          </Stack>
-        )}
-        <Stack
-          direction="row"
-          spacing={2}
-          sx={{ display: "flex", alignItems: "center", columnGap: 2 }}
-        >
-          {/* <Link to={PATHS.NOTIFICATIONS}>
+              <Search />
+            </div>
+            {!isMobile && (
+              <Stack
+                direction="row"
+                paddingY={1 / 2}
+                paddingX={1.5}
+                alignItems="center"
+                borderRadius={30}
+                spacing={4}
+                width="fit-content"
+                display={{ xs: "none", md: "flex" }}
+                className="lg:-ml-30 bg-quaternary"
+              >
+                {NAVROUTES.map(({ Icon, pathname, name }) => (
+                  <Link
+                    key={pathname}
+                    to={pathname}
+                    className={`flex items-center text-sm text-senary space-x-1 ${
+                      pathname === path &&
+                      "bg-primary rounded-3xl text-white py-1 px-2"
+                    } `}
+                  >
+                    <Icon className="text-base" />
+                    <Typography variant="p$14">{name}</Typography>
+                  </Link>
+                ))}
+              </Stack>
+            )}
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{ display: "flex", alignItems: "center", columnGap: 2 }}
+            >
+              {/* <Link to={PATHS.NOTIFICATIONS}>
           <Badge
         variant="dot"
             color="primary"
@@ -135,7 +141,7 @@ const baseUrl = process.env.REACT_APP_BASE_URL;
             <FaBell style={{ fontSize: "20px" }} />
           </Badge>
           </Link> */}
-          {/* {!isMobile && (
+              {/* {!isMobile && (
             <Link
               key={PATHS.CHALLENGE.LEADERBOARD}
               to={PATHS.CHALLENGE.LEADERBOARD}
@@ -147,39 +153,113 @@ const baseUrl = process.env.REACT_APP_BASE_URL;
               <Typography variant="p$14">Leaderboard</Typography>
             </Link>
           )} */}
-          <Button
-            sx={{ width: "fit-content", p: 0 }}
-            type="button"
-            aria-describedby={id}
-            onClick={handleClick}
-          >
+              <Button
+                sx={{ width: "fit-content", p: 0 }}
+                type="button"
+                aria-describedby={id}
+                onClick={handleClick}
+              >
+                <Stack
+                  direction="row"
+                  paddingY={1 / 2}
+                  paddingX={1 / 2}
+                  maxWidth={130}
+                  alignItems="center"
+                  borderRadius={30}
+                  spacing={1}
+                  flexShrink={4}
+                  className="bg-quaternary"
+                >
+                  <Avatar
+                    src={
+                      asset?.profilePictureUrl
+                        ? asset?.profilePictureUrl
+                        : Avatar1
+                    }
+                    alt="avatar"
+                    sx={{ width: 28, height: 28 }}
+                  />
+                  {!isMobile && (
+                    <Typography noWrap sx={{ fontSize: "12px" }}>
+                      {firstName}
+                    </Typography>
+                  )}
+                  <RiArrowDownSLine />
+                </Stack>
+              </Button>
+            </Stack>
+          </>
+        ) : (
+          <>
+            <div className="flex items-center">
+              <Link to={PATHS.FEED} className="mr-4">
+                <img src={Logo} alt="logo" />
+              </Link>
+            </div>
+            {!isMobile && (
+              <Stack
+                direction="row"
+                paddingY={1 / 2}
+                paddingX={1.5}
+                alignItems="center"
+                borderRadius={30}
+                spacing={4}
+                width="fit-content"
+                display={{ xs: "none", md: "flex" }}
+                className="lg:-ml-30 bg-quaternary"
+              >
+                {NAVROUTES.map(({ Icon, pathname, name }) => (
+                  <Link
+                    key={pathname}
+                    to={pathname}
+                    className={`flex items-center text-sm text-senary space-x-1 ${
+                      pathname === path &&
+                      "bg-primary rounded-3xl text-white py-1 px-2"
+                    } `}
+                  >
+                    <Icon className="text-base" />
+                    <Typography variant="p$14">{name}</Typography>
+                  </Link>
+                ))}
+              </Stack>
+            )}
             <Stack
               direction="row"
-              paddingY={1 / 2}
-              paddingX={1 / 2}
-              maxWidth={130}
-              alignItems="center"
-              borderRadius={30}
-              spacing={1}
-              flexShrink={4}
-              className="bg-quaternary"
+              spacing={2}
+              sx={{ display: "flex", alignItems: "center", columnGap: 2 }}
             >
-              <Avatar
-                src={
-                  asset?.profilePictureUrl ? asset?.profilePictureUrl : Avatar1
-                }
-                alt="avatar"
-                sx={{ width: 28, height: 28 }}
-              />
-              {!isMobile && (
-                <Typography noWrap sx={{ fontSize: "12px" }}>
-                  {firstName}
-                </Typography>
-              )}
-              <RiArrowDownSLine />
+              <Link to={PATHS.LOGIN}    state={{ redirectTo: location.pathname }}> 
+                <Button
+                  variant="outlined"
+                  sx={{
+                    height: { md: "45px", xs: "40px" },
+                    borderRadius: { md: "10px", xs: "8px" },
+                    width: "95px",
+                    borderWidth: "1.5px",
+                    borderColor: "primary.main",
+                    fontSize: { md: "16px", xs: "14px" },
+                  }}
+                >
+                  Login
+                </Button>
+              </Link>
+              <Link to={PATHS.SIGNUP}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    height: { md: "45px", xs: "40px" },
+                    borderRadius: { md: "10px", xs: "8px" },
+                    px: 2,
+
+                    fontSize: { md: "16px", xs: "14px" },
+                  }}
+                >
+                  Create Account
+                </Button>
+              </Link>
             </Stack>
-          </Button>
-        </Stack>
+          </>
+        )}
       </Stack>
       <Popover
         id={id}
@@ -274,6 +354,11 @@ const NAVROUTES = [
     name: "Livescore",
     Icon: IoMdFootball,
   },
+  {
+    pathname: PATHS.BLOG,
+    name: "Sportssphere",
+    Icon: BlogIcon,
+  },
 ];
 
 export const BottomNavigations = () => {
@@ -295,6 +380,9 @@ export const BottomNavigations = () => {
         break;
       case "Marketplace":
         navigate(PATHS.MARKETPLACE);
+        break;
+      case "Sportssphere":
+        navigate(PATHS.BLOG);
         break;
       default:
         navigate(PATHS.LIVESCORE);

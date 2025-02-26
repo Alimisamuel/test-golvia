@@ -26,6 +26,8 @@ import Leaderboard from "pages/challenges/Leaderboard";
 import MyProfileViews from "pages/settings/profile/MyActivityStat/MyProfileViews";
 import Notification from "pages/Notification/Notification";
 import MyReferral from "pages/settings/Referrals/MyReferral";
+import Blog from "pages/blog";
+import BlogPost from "pages/blog/BlogPost";
 
 export function Routes() {
   let element = useRoutes([
@@ -214,6 +216,14 @@ export function Routes() {
     {
       path: PATHS.ACTIVITY_STAT.MY_PROFILE_VIEWS,
       element: <MyProfileViews />,
+    },
+      {
+      path: PATHS.BLOG,
+      element: <Blog />,
+    },
+    {
+      path: `${PATHS.BLOG}/:id`,
+      element: <BlogPost />,
     },
   ]);
   return element;

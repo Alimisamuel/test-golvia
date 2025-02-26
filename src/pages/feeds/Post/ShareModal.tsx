@@ -1,8 +1,8 @@
 import { Box, Modal, Stack, Typography } from "@mui/material";
-import { ReactComponent as TwitterIcon } from "assets/icons/socials/x.svg";
-import { ReactComponent as LinkedinIcon } from "assets/icons/socials/linkedin.svg";
-import { ReactComponent as FacebookIcon } from "assets/icons/socials/facebook.svg";
-import { ReactComponent as WhatsappIcon } from "assets/icons/socials/whatsapp.svg";
+import { ReactComponent as TwitterIcon } from "assets/icons/socials/x-filled.svg";
+import { ReactComponent as LinkedinIcon } from "assets/icons/socials/linkedin-filled.svg";
+import { ReactComponent as FacebookIcon } from "assets/icons/socials/facebook-filled.svg";
+import { ReactComponent as WhatsappIcon } from "assets/icons/socials/whatsapp-filled.svg";
 import { ReactComponent as CopyLinkIcon } from "assets/icons/link.svg";
 import share from "common/share";
 import { Post } from "../api";
