@@ -1,5 +1,5 @@
 import "./index.css";
-import { Routes } from "./routes";
+import { Routes } from "./Routes";
 import { ThemeContextProvider } from "./Theme/ThemeContextProvider";
 import { HelmetProvider } from "react-helmet-async";
 import { ToastContainer } from "react-toastify";

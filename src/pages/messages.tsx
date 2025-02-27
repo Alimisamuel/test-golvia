@@ -1,6 +1,6 @@
 import React from "react";
 import AccessLayout from "../layouts/AccessLayout";
-import { PATHS } from "../routes/path";
+import { PATHS } from "../Routes/path";
 import { Helmet } from "react-helmet-async";
 import {
   Box,

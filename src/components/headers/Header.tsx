@@ -22,7 +22,7 @@ import Avatar1 from "../../assets/dummy_avatar_img/avatar_img.svg";
 import { IoMdSettings } from "react-icons/io";
 import { FaBell } from "react-icons/fa6";
 import { MdPeopleAlt } from "react-icons/md";
-import { PATHS } from "../../routes/path";
+import { PATHS } from "../../Routes/path";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import { Layout } from "constants/layers";
 import { useAppDispatch, useAppSelector } from "store/hooks";

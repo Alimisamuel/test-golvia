@@ -16,7 +16,7 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import AuthLayout from "../../layouts/AuthLayout";
 import GoogleLogin from "./SocialAuth/GoogleLogin";
-import { PATHS } from "../../routes/path";
+import { PATHS } from "../../Routes/path";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { loginAsync, selectAuth } from "../../api/slice/auth";
 import useAlert from "components/alert/useAlert";

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icons from "constants/Icons";
 import { Link } from "react-router-dom";
-import { PATHS } from "routes/path";
+import { PATHS } from "Routes/path";
 import {
   Button,
   TextField,

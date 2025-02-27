@@ -13,7 +13,7 @@ import { selectAuth, updateAsync } from "api/slice/auth";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { PATHS } from "routes/path";
+import { PATHS } from "Routes/path";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { FaCircleCheck } from "react-icons/fa6";
 

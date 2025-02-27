@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
-import { PATHS } from "routes/path";
+import { PATHS } from "Routes/path";
 
 // Define the return type of the hook
 type UseNavigateWithHashReturn = {

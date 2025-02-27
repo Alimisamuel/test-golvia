@@ -12,7 +12,7 @@ import FeedLayout from "layouts/FeedLayout";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import useNavigateWithHash from "pages/settings/profile/hooks/useNavigateWithHash";
 import React, { useEffect, useState } from "react";
-import { PATHS } from "routes/path";
+import { PATHS } from "Routes/path";
 
 type UserProfile = {
   id: number;

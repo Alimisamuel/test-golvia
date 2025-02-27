@@ -18,7 +18,7 @@ import SettingsLayout from "layouts/SettingsLayout";
 import { TbPhotoEdit } from "react-icons/tb";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import { Link, useNavigate } from "react-router-dom";
-import { PATHS } from "routes/path";
+import { PATHS } from "Routes/path";
 import logo from "../../../assets/logo/logo-blue.svg";
 import { PiPhoneLight } from "react-icons/pi";
 import Icons from "constants/Icons";

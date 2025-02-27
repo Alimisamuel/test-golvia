@@ -18,7 +18,7 @@ import {
 import { ReactComponent as ShareIcon } from "assets/icons/share-chain.svg";
 import ShareModal from "pages/feeds/Post/ShareModal";
 import { useState } from "react";
-import { PATHS } from "routes/path";
+import { PATHS } from "Routes/path";
 import toTitleCase from "common/util/toTitleCase";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import { useNavigate } from "react-router-dom";

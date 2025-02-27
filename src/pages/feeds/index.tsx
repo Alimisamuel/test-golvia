@@ -1,5 +1,5 @@
 import AccessLayout from "layouts/AccessLayout";
-import { PATHS } from "routes/path";
+import { PATHS } from "Routes/path";
 import FeedLayout from "layouts/FeedLayout";
 import {
   Box,
