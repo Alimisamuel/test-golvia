@@ -19,7 +19,7 @@ import {
 import { IoEllipsisVertical } from "react-icons/io5";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import { useGetApi } from "api/hooks/useGetApi";
-import { getPendingUsers, getPersonalNetwork, removeNetwork } from "api";
+import { getPendingUsers, getPersonalNetwork, removeNetwork } from "api/network";
 import { MdOutlineClose } from "react-icons/md";
 import useAlert from "components/alert/useAlert";
 import useNavigateWithHash from "pages/settings/profile/hooks/useNavigateWithHash";

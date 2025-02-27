@@ -9,7 +9,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { getSettings, resendOtp, toggle2faAuth, verifyOtp } from "api";
+
+import { getSettings } from "api/profile";
+import { resendOtp, verifyOtp } from "api/auth";
+import { toggle2faAuth } from "api/settings";
 import useAlert from "components/alert/useAlert";
 import SettingsLayout from "layouts/SettingsLayout";
 import OtpInput from "pages/auth/OtpInput";

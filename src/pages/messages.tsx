@@ -1,8 +1,14 @@
 import React from "react";
 import AccessLayout from "../layouts/AccessLayout";
-import { PATHS } from "../Routes/routes.path";
+import { PATHS } from "../routes/path";
 import { Helmet } from "react-helmet-async";
-import { Box, Avatar, CircularProgress, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Avatar,
+  CircularProgress,
+  Typography,
+  Button,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { HeaderHeight } from "constants/layers";
 import useAuthDetails from "./auth/useAuthDetails";
@@ -38,7 +44,10 @@ const Messages = () => {
             maxHeight={{ xs: mobileMaxHeight, md: desktopMaxHeight }}
             className=" w-[25%] overflow-y-auto hidden md:block scrollbar-none"
           >
-            <div className="bg-white rounded-2xl" style={{ border: "0.5px solid #dfdeda " }}>
+            <div
+              className="bg-white rounded-2xl"
+              style={{ border: "0.5px solid #dfdeda " }}
+            >
               <div className="px-8 pt-8">
                 <Link to={PATHS.SETTINGS.PROFILE}>
                   <Avatar
@@ -55,8 +64,8 @@ const Messages = () => {
                     {profileType === "FANBASE"
                       ? "Fan"
                       : profileType === "ATHLETES"
-                        ? "Athelete"
-                        : convertToTitleCase(profileType || "")}{" "}
+                      ? "Athelete"
+                      : convertToTitleCase(profileType || "")}{" "}
                     - <span className="text-gray-500">{sportType}</span>
                   </h4>
                 </div>
@@ -101,7 +110,9 @@ const Messages = () => {
                     )}
 
                     <Link to={PATHS.SETTINGS.PROFILE}>
-                      <p className="text-xs text-blue-500 underline">My Profile</p>
+                      <p className="text-xs text-blue-500 underline">
+                        My Profile
+                      </p>
                     </Link>
                   </div>
                 </>
@@ -119,7 +130,9 @@ const Messages = () => {
               style={{ border: "0.5px solid #dfdeda ", height: "80vh" }}
             >
               <img src={images.message} />
-              <Typography sx={{ fontSize: "25px", mt: 2 }}>Golvia Messenger</Typography>
+              <Typography sx={{ fontSize: "25px", mt: 2 }}>
+                Golvia Messenger
+              </Typography>
               <Typography sx={{ fontSize: "18px" }}>Coming Soon</Typography>
               <Link to={PATHS.FEED}>
                 <Button

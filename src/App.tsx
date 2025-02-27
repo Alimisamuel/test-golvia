@@ -1,5 +1,5 @@
 import "./index.css";
-import { Routes } from "./Routes";
+import { Routes } from "./routes";
 import { ThemeContextProvider } from "./Theme/ThemeContextProvider";
 import { HelmetProvider } from "react-helmet-async";
 import { ToastContainer } from "react-toastify";
@@ -12,7 +12,7 @@ import ErrorAlert from "components/alert/ErrorAlert";
 import SuccessAlert from "components/alert/SuccessAlert";
 import GoogleAds from "utils/GoogleAds";
 
-const App: React.FC = () =>{
+const App: React.FC = () => {
   return (
     <SnackbarProvider
       maxSnack={3}
@@ -21,21 +21,21 @@ const App: React.FC = () =>{
         horizontal: "left",
       }}
       Components={{ error: ErrorAlert, success: SuccessAlert }}
-    >    
+    >
       <Provider store={store}>
         <HelmetProvider>
           <ToastContainer />
           <ThemeContextProvider>
             <div id="continerBackdrop"></div>
             <ScrollToTop />
-       
+
             <Routes />
-     <GoogleAds/>
+            <GoogleAds />
           </ThemeContextProvider>
         </HelmetProvider>
       </Provider>
     </SnackbarProvider>
   );
-}
+};
 
 export default App;

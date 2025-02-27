@@ -1,5 +1,5 @@
 import { useAppSelector } from "store/hooks";
-import { selectAuth } from "./slice";
+import { selectAuth } from "../../api/slice/auth";
 
 const useAuthDetails = () => {
   const auth = useAppSelector(selectAuth);

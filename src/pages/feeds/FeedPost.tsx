@@ -21,11 +21,15 @@ import useAuthDetails from "pages/auth/useAuthDetails";
 // import { IoMdImages } from "react-icons/io";
 // import { PiVideoFill } from "react-icons/pi";
 import clsx from "clsx";
-import { Challenge } from "services/challenge/api";
+import { Challenge } from "api/challenge";
 
 let initialUploadStarted = false;
 
-export default function FeedPost({ challenge }: { challenge: Challenge | undefined }) {
+export default function FeedPost({
+  challenge,
+}: {
+  challenge: Challenge | undefined;
+}) {
   const [createPost] = useCreatePostMutation();
   const [isChallengePost, setIsChallengePost] = useState(false);
   const fileSelect = useFileSelect();
@@ -43,8 +47,14 @@ export default function FeedPost({ challenge }: { challenge: Challenge | undefin
     fileHover,
   } = fileSelect as NonNullable<ReturnType<typeof useFileSelect>>;
   const uploadHandler = useUploadHandler(setFiles, setNextFiles, setUploading);
-  const { mediaData, startUpload, successCount, mediaPayload, formSubmitted, setFormSubmitted } =
-    uploadHandler;
+  const {
+    mediaData,
+    startUpload,
+    successCount,
+    mediaPayload,
+    formSubmitted,
+    setFormSubmitted,
+  } = uploadHandler;
   const { asset, isProfileCompleted } = useAuthDetails();
   const [content, setContent] = useState("");
 
@@ -56,7 +66,9 @@ export default function FeedPost({ challenge }: { challenge: Challenge | undefin
 
   const handleChallengeUpload = (e: ChangeEvent<HTMLInputElement>) => {
     setIsChallengePost(true);
-    updateFiles(Array.from(e.target.files ?? []), true, () => setIsChallengePost(false));
+    updateFiles(Array.from(e.target.files ?? []), true, () =>
+      setIsChallengePost(false)
+    );
     e.target.value = "";
   };
 
@@ -148,7 +160,13 @@ export default function FeedPost({ challenge }: { challenge: Challenge | undefin
 
   return (
     <>
-      <Stack direction="row" spacing={2} paddingX={2} paddingTop={4} paddingBottom={2}>
+      <Stack
+        direction="row"
+        spacing={2}
+        paddingX={2}
+        paddingTop={4}
+        paddingBottom={2}
+      >
         <Avatar
           src={asset?.profilePictureUrl ? asset?.profilePictureUrl : Avartar1}
           alt="user"
@@ -253,9 +271,16 @@ export default function FeedPost({ challenge }: { challenge: Challenge | undefin
         <div className="flex items-center justify-center space-x-6">
           <label
             htmlFor="image-upload"
-            className={`${fileSelectDisabled || isChallengePost ? "cursor-not-allowed opacity-75" : "cursor-pointer"}`}
+            className={`${
+              fileSelectDisabled || isChallengePost
+                ? "cursor-not-allowed opacity-75"
+                : "cursor-pointer"
+            }`}
           >
-            <Button variant="text" className="flex items-center space-x-2 pointer-events-none">
+            <Button
+              variant="text"
+              className="flex items-center space-x-2 pointer-events-none"
+            >
               <UploadImageIcon />
               <Typography variant="p$14" className="font-medium text-senary">
                 Upload Image
@@ -273,9 +298,16 @@ export default function FeedPost({ challenge }: { challenge: Challenge | undefin
           </label>
           <label
             htmlFor="video-upload"
-            className={`${fileSelectDisabled || isChallengePost ? "cursor-not-allowed opacity-75" : "cursor-pointer"}`}
+            className={`${
+              fileSelectDisabled || isChallengePost
+                ? "cursor-not-allowed opacity-75"
+                : "cursor-pointer"
+            }`}
           >
-            <Button variant="text" className="flex items-center space-x-2 pointer-events-none">
+            <Button
+              variant="text"
+              className="flex items-center space-x-2 pointer-events-none"
+            >
               <UploadVideoIcon />
               <Typography variant="p$14" className="font-medium text-senary">
                 Upload Video
@@ -302,7 +334,13 @@ export default function FeedPost({ challenge }: { challenge: Challenge | undefin
           >
             <label
               htmlFor="challenge-video-upload"
-              className={`${fileSelectDisabled || challengePostDisabled || !isProfileCompleted ? "cursor-not-allowed opacity-75" : "cursor-pointer"}`}
+              className={`${
+                fileSelectDisabled ||
+                challengePostDisabled ||
+                !isProfileCompleted
+                  ? "cursor-not-allowed opacity-75"
+                  : "cursor-pointer"
+              }`}
             >
               {/* <Button variant="text" className="flex items-center space-x-2 pointer-events-none">
                 <ChallengeIcon height={21} width={21} />
@@ -314,7 +352,11 @@ export default function FeedPost({ challenge }: { challenge: Challenge | undefin
                 type="file"
                 id="challenge-video-upload"
                 onChange={handleChallengeUpload}
-                disabled={fileSelectDisabled || challengePostDisabled || !isProfileCompleted}
+                disabled={
+                  fileSelectDisabled ||
+                  challengePostDisabled ||
+                  !isProfileCompleted
+                }
                 accept={
                   " video/mp4, video/quicktime, video/x-ms-wmv, video/x-msvideo, video/x-ms-wmv, video/x-flv, video/3gpp"
                 }

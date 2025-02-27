@@ -1,4 +1,10 @@
-import { Box, Typography, Button, CircularProgress, ListItemButton } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  CircularProgress,
+  ListItemButton,
+} from "@mui/material";
 import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo/logo-white.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -11,11 +17,12 @@ import img3 from "../../assets/icons/registration_type/3.svg";
 import img5 from "../../assets/icons/registration_type/5.svg";
 import img7 from "../../assets/icons/registration_type/7.svg";
 import { IoIosCheckmarkCircle } from "react-icons/io";
-import { PATHS } from "../../Routes/routes.path";
+import { PATHS } from "../../routes/path";
 import { SPORTS } from "../../assets/data/data";
-import { registrationType, submitReferral } from "../../api";
+import { submitReferral } from "../../api/referral";
+import { registrationType } from "api/profile";
 import { useAppDispatch } from "store/hooks";
-import { updateAsync } from "./slice";
+import { updateAsync } from "../../api/slice/auth";
 
 type RegistrationTypeOption = {
   label: string;
@@ -63,7 +70,10 @@ const RegistrationType = () => {
     setAnimate(true);
   }, []);
 
-  const [registration_type, setRegistrationType] = useState<RegistrationTypeOption | null>(null);
+  const [
+    registration_type,
+    setRegistrationType,
+  ] = useState<RegistrationTypeOption | null>(null);
 
   const [fullName, setFullName] = useState<string | null>(null);
   const [email, setEmail] = useState<string>("");
@@ -79,7 +89,7 @@ const RegistrationType = () => {
     }
   }, [location]);
 
-    const [referralCode, setReferralCode] = useState<string | null>("");
+  const [referralCode, setReferralCode] = useState<string | null>("");
 
   React.useEffect(() => {
     const storedRef: string | null = localStorage.getItem("referral_code");
@@ -88,7 +98,7 @@ const RegistrationType = () => {
     }
   }, []);
 
-    const handleSubmitReferral = async () => {
+  const handleSubmitReferral = async () => {
     await submitReferral(email, referralCode || "")
       .then((res) => {
         console.log("Referral code submitted successfully");
@@ -97,7 +107,6 @@ const RegistrationType = () => {
         console.log(err);
       });
   };
-
 
   const [reg_type, setRegType] = useState("");
   const [isLoading, setisLoading] = useState(false);
@@ -120,12 +129,15 @@ const RegistrationType = () => {
   };
 
   const handleRegistrationType = async () => {
-     handleSubmitReferral()
+    handleSubmitReferral();
     setisLoading(true);
     const joinedSport = favouriteSport.join(", ");
     await registrationType(email, reg_type, joinedSport, teamName)
       .then((res) => {
-        localStorage.setItem("golvia_user_name", res?.data?.data?.user?.fullname);
+        localStorage.setItem(
+          "golvia_user_name",
+          res?.data?.data?.user?.fullname
+        );
         navigate(PATHS.ACCOUNT_SUCCESSFUL);
         handleUpdate();
       })
@@ -181,7 +193,10 @@ const RegistrationType = () => {
               <Link to="/">
                 <img src={logo} alt="Golvia_logo" width={40} />
               </Link>
-              <Box sx={{ overflowX: "hidden", height: "100%" }} className="hide_scrollbar">
+              <Box
+                sx={{ overflowX: "hidden", height: "100%" }}
+                className="hide_scrollbar"
+              >
                 <Typography
                   className={`text-container ${animate ? "animate" : ""}`}
                   sx={{
@@ -290,7 +305,9 @@ const RegistrationType = () => {
                           <IoIosCheckmarkCircle style={{ color: "#3373E0" }} />
                         </Box>
                       )}
-                      <Box sx={{ mt: 2, display: "grid", placeItems: "center" }}>
+                      <Box
+                        sx={{ mt: 2, display: "grid", placeItems: "center" }}
+                      >
                         <Box
                           sx={{
                             bgcolor: "#7474741a",

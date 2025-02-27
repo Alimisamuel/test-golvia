@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import AccessLayout from "../../layouts/AccessLayout";
-import { PATHS } from "../../Routes/routes.path";
+import { PATHS } from "../../routes/path";
 import { Helmet } from "react-helmet-async";
 import FeedLayout from "../../layouts/FeedLayout";
 import { Box, Button, Stack } from "@mui/material";
@@ -8,7 +8,11 @@ import PersonalNetwork from "./PersonalNetwork";
 import GlobalNetwork from "./GlobalNetwork";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function TabButton(props: { children: string; isactive: boolean; onClick: () => void }) {
+function TabButton(props: {
+  children: string;
+  isactive: boolean;
+  onClick: () => void;
+}) {
   const { children, isactive } = props;
 
   return (
@@ -31,7 +35,9 @@ function TabButton(props: { children: string; isactive: boolean; onClick: () => 
 }
 
 export default function Network() {
-  const [currentView, setCurrentView] = useState<"personal" | "global">("global");
+  const [currentView, setCurrentView] = useState<"personal" | "global">(
+    "global"
+  );
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const tab = queryParams.get("tab");
@@ -53,8 +59,17 @@ export default function Network() {
         </Helmet>
 
         {/* {isMobile ? ( */}
-        <Box paddingY={4} borderRadius="16px" className="*:xs:!px-4 *:md:!px-8 bg-white">
-          <Stack direction="row" paddingBottom={2} spacing={2} visibility={{ lg: "visible" }}>
+        <Box
+          paddingY={4}
+          borderRadius="16px"
+          className="*:xs:!px-4 *:md:!px-8 bg-white"
+        >
+          <Stack
+            direction="row"
+            paddingBottom={2}
+            spacing={2}
+            visibility={{ lg: "visible" }}
+          >
             <TabButton
               isactive={currentView == "global"}
               onClick={() => {

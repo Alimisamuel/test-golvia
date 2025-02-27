@@ -9,7 +9,7 @@ import {
   Tabs,
   Tab,
 } from "@mui/material";
-import { getOtherUserProfile } from "api";
+import { getOtherUserProfile } from "api/profile";
 import BackdropLoader from "components/loaders/Backdrop";
 // import Icons from "constants/Icons";
 import successTone from "../../../assets/tone/success-tone.mp3";
@@ -17,13 +17,13 @@ import images from "constants/images";
 import AccessLayout from "layouts/AccessLayout";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 import { BsPeopleFill } from "react-icons/bs";
 import { useCreateConnect } from "pages/network/hooks/useCreateConnect";
 import { MdAccessTime } from "react-icons/md";
 import { useToggleFollowUser } from "pages/network/hooks/useFollow";
 import ProfileDisplay from "./Utils/ProfileDisplay";
-import { OtherUsersPayload } from "api/types";
+import { OtherUsersPayload } from "models/profile";
 import { useLazyGetPostsByUserQuery } from "pages/feeds/api";
 import FeedItem from "pages/feeds/Post";
 import useAlert from "components/alert/useAlert";
@@ -78,7 +78,7 @@ const OtherUserProfile = () => {
     if (!id) {
       return null;
     }
-const restoreHashedEmail = id.replace(/_/g, "/").replace(/-/g, "+");
+    const restoreHashedEmail = id.replace(/_/g, "/").replace(/-/g, "+");
     const bytes = CryptoJS.AES.decrypt(restoreHashedEmail, SECRET_KEY);
     return bytes.toString(CryptoJS.enc.Utf8);
   }, [id]);
@@ -123,7 +123,8 @@ const restoreHashedEmail = id.replace(/_/g, "/").replace(/-/g, "+");
     connectionsCount: 0,
   };
 
-  const { firstName, lastName, sportType, profileType, country, email } = profile?.user || {};
+  const { firstName, lastName, sportType, profileType, country, email } =
+    profile?.user || {};
   const {
     currentClub,
     preferredPosition,
@@ -229,7 +230,10 @@ const restoreHashedEmail = id.replace(/_/g, "/").replace(/-/g, "+");
     audio.play();
   };
 
-  const { createConnectionHandler, loadingButtonId: connectionLoader } = useCreateConnect();
+  const {
+    createConnectionHandler,
+    loadingButtonId: connectionLoader,
+  } = useCreateConnect();
 
   const [updatedstatus, setUpdatedStatus] = useState<boolean>(false);
 
@@ -346,8 +350,13 @@ const restoreHashedEmail = id.replace(/_/g, "/").replace(/-/g, "+");
                     <span style={{ marginLeft: "9px" }}>|</span>{" "}
                   </p>
                 )}
-                <p className="text-[14px]">{metadata?.connectionsCount || 0} Connections </p> .{" "}
-                <p className="text-[14px]">{metadata?.followersCount || 0} Followers</p>
+                <p className="text-[14px]">
+                  {metadata?.connectionsCount || 0} Connections{" "}
+                </p>{" "}
+                .{" "}
+                <p className="text-[14px]">
+                  {metadata?.followersCount || 0} Followers
+                </p>
               </div>
             </div>
             <div className="flex flex-col">
@@ -419,8 +428,16 @@ const restoreHashedEmail = id.replace(/_/g, "/").replace(/-/g, "+");
             }}
           >
             <Box sx={{ borderBottom: 1, borderColor: "divider", mt: 4 }}>
-              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="Profile information" {...a11yProps(0)} sx={{ fontSize: "14px" }} />
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+              >
+                <Tab
+                  label="Profile information"
+                  {...a11yProps(0)}
+                  sx={{ fontSize: "14px" }}
+                />
                 <Tab
                   label={`All Post (${posts?.data?.length || 0})`}
                   {...a11yProps(1)}
@@ -438,14 +455,18 @@ const restoreHashedEmail = id.replace(/_/g, "/").replace(/-/g, "+");
                 {dateOfBirth && (
                   <div className="flex  space-x-3 mt-2">
                     <p className="text-[14px] whitespace-nowrap">Age:</p>
-                    <p className="text-black font-[500] text-[14px]">{getAge(dateOfBirth)}</p>
+                    <p className="text-black font-[500] text-[14px]">
+                      {getAge(dateOfBirth)}
+                    </p>
                   </div>
                 )}
                 <ProfileDisplay profileDetails={personalInformation} />
 
                 {/* Professional Information */}
                 <div className="mt-8">
-                  <p className="text-black font-[500]">Professional information</p>
+                  <p className="text-black font-[500]">
+                    Professional information
+                  </p>
                   <hr className="my-3" />
 
                   <ProfileDisplay profileDetails={professionalInfo} />
@@ -470,7 +491,12 @@ const restoreHashedEmail = id.replace(/_/g, "/").replace(/-/g, "+");
             {/* FEEEEEEEEEDDDDDDDSSSSSS */}
             <CustomTabPanel value={value} index={1}>
               <div className="md:w-[100%]  pb-4  overflow-x-hidden">
-                <Typography variant="h$20" fontWeight="medium" color="black" pb={2}>
+                <Typography
+                  variant="h$20"
+                  fontWeight="medium"
+                  color="black"
+                  pb={2}
+                >
                   All Posts
                 </Typography>
                 {posts?.data?.length === 0 ? (
@@ -493,7 +519,9 @@ const restoreHashedEmail = id.replace(/_/g, "/").replace(/-/g, "+");
                   </Box>
                 ) : (
                   posts?.data &&
-                  posts?.data.map((post) => <FeedItem key={post.id} post={post} compact />)
+                  posts?.data.map((post) => (
+                    <FeedItem key={post.id} post={post} compact />
+                  ))
                 )}
               </div>
             </CustomTabPanel>

@@ -8,8 +8,8 @@ import share from "common/share";
 import { Post } from "../api";
 import useCopyToClipboard from "common/hooks/useCopyToClipboard";
 import { useParams } from "react-router-dom";
-import { Challenge } from "services/challenge/api";
-import { PATHS } from "Routes/routes.path";
+import { Challenge } from "api/challenge";
+import { PATHS } from "routes/path";
 
 interface Props {
   isOpen: boolean;
@@ -53,7 +53,9 @@ export default function ShareModal(props: Props) {
     return text;
   };
 
-  const handleShare = (platform: "twitter" | "linkedin" | "facebook" | "whatsapp") => {
+  const handleShare = (
+    platform: "twitter" | "linkedin" | "facebook" | "whatsapp"
+  ) => {
     share({ platform, url, text: getText() });
   };
 
@@ -68,7 +70,12 @@ export default function ShareModal(props: Props) {
         alignItems="center"
         className="bg-white rounded-t-2xl rounded-b-2xl text-gv-black_1A1C1F mr-auto ml-auto"
       >
-        <Typography variant="h$20" textAlign="center" fontWeight="medium" padding={2}>
+        <Typography
+          variant="h$20"
+          textAlign="center"
+          fontWeight="medium"
+          padding={2}
+        >
           Share
         </Typography>
         <hr />

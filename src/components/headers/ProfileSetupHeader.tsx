@@ -2,14 +2,15 @@ import { ReactComponent as ChevronRightIcon } from "assets/icons/chevron-right.s
 import { ReactComponent as BackIcon } from "assets/icons/arrow-left.svg";
 import { Drawer, Stack, Typography } from "@mui/material";
 import { useState } from "react";
-import useSectionHook, { SectionKeys } from "pages/get-started/useSectionHook";
+import useSectionHook, { SectionKeys } from "pages/getStarted/useSectionHook";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import { ProfileSectionKeysMap } from "pages/auth/RegistrationType";
 
 export default function ProfileSetupHeader() {
   const [isOpen, setOpen] = useState(false);
 
-  const profileType = (useAuthDetails().profileType || "ATHLETES") as keyof ProfileSectionKeysMap;
+  const profileType = (useAuthDetails().profileType ||
+    "ATHLETES") as keyof ProfileSectionKeysMap;
 
   const { sections, onSectionChange } = useSectionHook(profileType); // dynamically use user profile type
   const toggleDrawer = () => setOpen((prevState) => !prevState);
@@ -55,7 +56,9 @@ export default function ProfileSetupHeader() {
               paddingLeft={4}
               paddingRight={3}
               alignItems="center"
-              onClick={() => handleSectionSelect(key as SectionKeys<typeof profileType>)}
+              onClick={() =>
+                handleSectionSelect(key as SectionKeys<typeof profileType>)
+              }
               width="100%"
               height={56}
               spacing={3}

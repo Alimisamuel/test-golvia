@@ -3,14 +3,17 @@ import { Avatar, Box, Modal } from "@mui/material";
 import Avartar1 from "../../assets/dummy_avatar_img/avatar_img.svg";
 import CircularLoader from "../loaders/CircularLoader";
 import { useNavigate } from "react-router-dom";
-import { PATHS } from "../../Routes/routes.path";
+import { PATHS } from "../../routes/path";
 
 interface CompleteProfileModalProps {
   open: boolean;
   handleClose: () => void;
 }
 
-const CompleteProfileModal = ({ open, handleClose }: CompleteProfileModalProps) => {
+const CompleteProfileModal = ({
+  open,
+  handleClose,
+}: CompleteProfileModalProps) => {
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate(PATHS.GET_STARTED);
@@ -30,7 +33,11 @@ const CompleteProfileModal = ({ open, handleClose }: CompleteProfileModalProps) 
           <div className="mt-4 flex bg-slate-200 py-4 px-6 rounded-xl space-x-3">
             <div className="flex">
               <div className="z-50">
-                <Avatar src={Avartar1} alt={"a user"} sx={{ width: 56, height: 56 }} />
+                <Avatar
+                  src={Avartar1}
+                  alt={"a user"}
+                  sx={{ width: 56, height: 56 }}
+                />
               </div>
               <div className="-ml-3">
                 <CircularLoader value={40} size={55} />
@@ -38,7 +45,9 @@ const CompleteProfileModal = ({ open, handleClose }: CompleteProfileModalProps) 
             </div>
             <div className="">
               <h3 className="text-[#848484] text-sm">Profile Level</h3>
-              <p className="text-xs">You are 40% away from completing your profile</p>
+              <p className="text-xs">
+                You are 40% away from completing your profile
+              </p>
             </div>
           </div>
           <button

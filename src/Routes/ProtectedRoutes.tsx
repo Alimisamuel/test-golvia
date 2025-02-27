@@ -1,4 +1,4 @@
-import { selectToken } from "pages/auth/slice";
+import { selectToken } from "api/slice/auth";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAppSelector } from "store/hooks";
 
@@ -11,7 +11,9 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const location = useLocation(); // To remember where the user was trying to go
 
   if (!user) {
-  return <Navigate to="/login" state={{ redirectTo: location.pathname }} replace />;
+    return (
+      <Navigate to="/login" state={{ redirectTo: location.pathname }} replace />
+    );
   }
 
   // If token exists, render the protected route

@@ -2,7 +2,7 @@ import { Box, LinearProgress, Typography } from "@mui/material";
 import React from "react";
 import logo from "../../assets/logo/border-logo.svg";
 import { useNavigate } from "react-router-dom";
-import { PATHS } from "../../Routes/routes.path";
+import { PATHS } from "../../routes/path";
 
 const AccountSuccessfully = () => {
   const [progress, setProgress] = React.useState(0);
@@ -49,8 +49,14 @@ const AccountSuccessfully = () => {
         created successfully
       </Typography>
 
-      <Box sx={{ width: { lg: "40%", md: "40%", sm: "60%", xs: "80%" }, mt: 5 }}>
-        <LinearProgress color="secondary" value={progress} variant="determinate" />
+      <Box
+        sx={{ width: { lg: "40%", md: "40%", sm: "60%", xs: "80%" }, mt: 5 }}
+      >
+        <LinearProgress
+          color="secondary"
+          value={progress}
+          variant="determinate"
+        />
       </Box>
       <Typography sx={{ mt: 7 }}>Setting up your profile page</Typography>
     </Box>

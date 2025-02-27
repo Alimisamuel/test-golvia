@@ -1,11 +1,11 @@
 import { Button, TextField } from "@mui/material";
-import { forgotPassword } from "api";
+import { forgotPassword } from "api/auth";
 import useAlert from "components/alert/useAlert";
 import BackdropLoader from "components/loaders/Backdrop";
 import Icons from "constants/Icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 
 const ForgotPassword = () => {
   const [activeStep, setActiveStep] = useState<number>(1);
@@ -36,7 +36,8 @@ const ForgotPassword = () => {
           <div className="mt-8 md:px-16 xs:px-5 bg-white md:w-[40%]  xs:w-[85%] p-3 rounded-[12px] flex flex-col items-center justify-center pb-14">
             <h2 className="font-[600] text-[24px] mt-8">Forgot Password?</h2>
             <p className="mt-4">
-              Don’t worry! Fill in your email and we will send you a link to reset your password.
+              Don’t worry! Fill in your email and we will send you a link to
+              reset your password.
             </p>
 
             <div className="mt-10 w-full">
@@ -60,7 +61,10 @@ const ForgotPassword = () => {
                 </Button>
 
                 <Link to={PATHS.LOGIN}>
-                  <p className="mt-6 text-xs text-center text-primary underline"> Back to Login</p>
+                  <p className="mt-6 text-xs text-center text-primary underline">
+                    {" "}
+                    Back to Login
+                  </p>
                 </Link>
               </div>
             </div>
@@ -70,10 +74,12 @@ const ForgotPassword = () => {
           <div className="mt-8 md:px-16 xs:px-5 bg-white md:w-[40%]  xs:w-[85%] p-3 rounded-[12px] flex flex-col items-center justify-center pb-14">
             <img src={Icons.email2} className="mt-4" />
 
-            <h2 className="font-[500] text-[24px] mt-3 ">We have sent you an email</h2>
+            <h2 className="font-[500] text-[24px] mt-3 ">
+              We have sent you an email
+            </h2>
             <p className="mt-4">
-              Thanks! An email was sent that will as you to click on a link to verify that your own
-              this account. If you dont get the email,{" "}
+              Thanks! An email was sent that will as you to click on a link to
+              verify that your own this account. If you dont get the email,{" "}
               <span className="text-[#1D69D8]">please contact </span>
             </p>
 
@@ -95,7 +101,10 @@ const ForgotPassword = () => {
                   Resend Email
                 </Button>
                 <Link to={PATHS.LOGIN}>
-                  <p className="mt-6 text-xs text-center text-primary underline"> Back to Login</p>
+                  <p className="mt-6 text-xs text-center text-primary underline">
+                    {" "}
+                    Back to Login
+                  </p>
                 </Link>
               </div>
             </div>

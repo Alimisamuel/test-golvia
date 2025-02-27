@@ -1,20 +1,20 @@
 import { Avatar, Box, CircularProgress, Typography } from "@mui/material";
-import { getProfileViewed } from "api";
+import { getProfileViewed } from "api/profile";
 import { useGetApi } from "api/hooks/useGetApi";
 import AccessLayout from "layouts/AccessLayout";
 import FeedLayout from "layouts/FeedLayout";
 import { UserListSkeleton } from "pages/network/GlobalNetwork";
-import React from "react";
-import { PATHS } from "Routes/routes.path";
+// import React from "react";
+import { PATHS } from "routes/path";
 import FormatProfileType from "../Utils/FormatProfileType";
 import images from "constants/images";
 import useNavigateWithHash from "../hooks/useNavigateWithHash";
-import { userPayload } from "pages/auth/api";
+import { UserPayload } from "models/auth";
 
 const MyProfileViews = () => {
   const { data, loading } = useGetApi(getProfileViewed);
 
-  const viewersList: userPayload[] = data?.data;
+  const viewersList: UserPayload[] = data?.data;
   const { sendUserToNextPage } = useNavigateWithHash();
 
   return (

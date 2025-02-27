@@ -11,10 +11,10 @@ import {
   useTheme,
   Drawer,
 } from "@mui/material";
-import { updateCoverPhoto } from "api";
+import { updateCoverPhoto } from "api/profile";
 import { uploadImageAndVideo } from "api/cloudinaryApi";
 import useAlert from "components/alert/useAlert";
-import { updateAsync } from "pages/auth/slice";
+import { updateAsync } from "api/slice/auth";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
@@ -62,7 +62,10 @@ const EditCoverPhoto: React.FC<Props> = ({ open, handleClose }) => {
     handleUpdate();
   }, [open]);
 
-  const { getRootProps: getImageRootProps, getInputProps: getImageInputProps } = useDropzone({
+  const {
+    getRootProps: getImageRootProps,
+    getInputProps: getImageInputProps,
+  } = useDropzone({
     accept: {
       "image/jpg": [".jpg"],
       "image/jpeg": [".jpeg"],
@@ -114,10 +117,14 @@ const EditCoverPhoto: React.FC<Props> = ({ open, handleClose }) => {
   const handleImageUpload = async () => {
     setIsLoading(true);
     try {
-      const response = await uploadImageAndVideo(imageFiles[0], null, (progress) => {
-        setUploadProgress(progress);
-        // setImageUploadStatus(`${progress}% - Completed`);
-      });
+      const response = await uploadImageAndVideo(
+        imageFiles[0],
+        null,
+        (progress) => {
+          setUploadProgress(progress);
+          // setImageUploadStatus(`${progress}% - Completed`);
+        }
+      );
       setImage(response.imageUrl);
 
       setUploadProgress(100);
@@ -267,7 +274,9 @@ const EditCoverPhoto: React.FC<Props> = ({ open, handleClose }) => {
             py: 2,
           }}
         >
-          <Typography sx={{ fontSize: "26px", fontWeight: 700 }}>Cover Photo</Typography>
+          <Typography sx={{ fontSize: "26px", fontWeight: 700 }}>
+            Cover Photo
+          </Typography>
           <IconButton onClick={handleClose}>
             <CloseOutlined sx={{ color: "#000" }} />
           </IconButton>

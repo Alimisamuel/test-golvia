@@ -2,9 +2,9 @@ import { useRoutes } from "react-router-dom";
 import { Login, Signup, AccountSuccessfully } from "../pages/auth";
 import RegistrationType from "../pages/auth/RegistrationType";
 import Feed from "pages/feeds";
-import GetStarted from "../pages/get-started";
+import GetStarted from "../pages/getStarted";
 import Network from "../pages/network/Network";
-import { PATHS } from "./routes.path";
+import { PATHS } from "./path";
 import VerifyOtp from "../pages/auth/VerifyOtp";
 import NoPage from "../pages/nopage";
 import { Privacy, PolicyLayouts, Terms, Cookies } from "../pages/policy";
@@ -19,12 +19,12 @@ import LoginOtp from "pages/auth/LoginOtp";
 import OtherUserProfile from "pages/settings/profile/OtherUserProfile";
 import LiveScoreLayout from "layouts/LiveScoreLayout";
 import Messages from "pages/messages";
-import Home from "pages/Home";
-import MarketPlace from "pages/MarketPlace";
+import Home from "pages/home";
+import MarketPlace from "pages/marketPlace";
 import Faqs from "pages/settings/Faqs";
 import Leaderboard from "pages/challenges/Leaderboard";
 import MyProfileViews from "pages/settings/profile/MyActivityStat/MyProfileViews";
-import Notification from "pages/Notification/Notification";
+import Notification from "pages/notification";
 import MyReferral from "pages/settings/Referrals/MyReferral";
 import Blog from "pages/blog";
 import BlogPost from "pages/blog/BlogPost";
@@ -193,7 +193,7 @@ export function Routes() {
       path: PATHS.SETTINGS.PASSWORD_RESET,
       element: <PasswordResetSettings />,
     },
-       {
+    {
       path: PATHS.SETTINGS.MY_REFERRALS,
       element: <MyReferral />,
     },
@@ -217,7 +217,7 @@ export function Routes() {
       path: PATHS.ACTIVITY_STAT.MY_PROFILE_VIEWS,
       element: <MyProfileViews />,
     },
-      {
+    {
       path: PATHS.BLOG,
       element: <Blog />,
     },

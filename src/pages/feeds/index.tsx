@@ -1,7 +1,14 @@
 import AccessLayout from "layouts/AccessLayout";
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 import FeedLayout from "layouts/FeedLayout";
-import { Box, Divider, Skeleton, Stack, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  Divider,
+  Skeleton,
+  Stack,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useGetPostByIdQuery, useLazyGetPostsQuery } from "./api";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import FeedItem from "./Post";
@@ -13,7 +20,7 @@ import { HeaderHeight } from "constants/layers";
 // import joinChallenge from "assets/imgs/join-challenge.webp";
 import InfiniteScroll from "common/InfiniteScroll";
 import usePagination from "common/hooks/pagination/usePagination";
-import { useGetChallengeByIdQuery } from "services/challenge/api";
+import { useGetChallengeByIdQuery } from "api/challenge";
 import useAlert from "components/alert/useAlert";
 import PostModal from "./Post/PostModal";
 import ChallengePostPromptModal from "./ChallangePostPromptModal";
@@ -50,7 +57,9 @@ const Feed = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [openPostModal, setPostModalOpen] = useState(!!id);
-  const [openChallengePromptModal, setChallengePromptModalOpen] = useState(false);
+  const [openChallengePromptModal, setChallengePromptModalOpen] = useState(
+    false
+  );
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -86,7 +95,14 @@ const Feed = () => {
         title="Feed | Golvia"
         description=""
         ogTitle={`Post by ${postData?.data?.user.firstName} ${postData?.data?.user.firstName}`}
-        ogDescription={`View this ${postData?.data?.challengeId && "challenge"} post by ${postData?.data?.user.firstName} ${postData?.data?.user.firstName} ${postData?.data?.challengeId && "for #CelebrateYourCountryChallenge on Golvia"}`}
+        ogDescription={`View this ${
+          postData?.data?.challengeId && "challenge"
+        } post by ${postData?.data?.user.firstName} ${
+          postData?.data?.user.firstName
+        } ${
+          postData?.data?.challengeId &&
+          "for #CelebrateYourCountryChallenge on Golvia"
+        }`}
         ogImage={`${postData?.data?.mediaUrls[0].link}`}
         ogType="article"
         ogUrl={postId ? `window.location.href${postId}` : window.location.href}
@@ -107,7 +123,9 @@ const Feed = () => {
               <div className="flex items-center gap-x-2 my-2">
                 <Divider sx={{ flex: 1 }} />
                 <Link to={PATHS.LIVESCORE}>
-                  <p className="text-primary text-[14px] pr-1 font-[500]">Browse Livescores</p>
+                  <p className="text-primary text-[14px] pr-1 font-[500]">
+                    Browse Livescores
+                  </p>
                 </Link>
               </div>
             )}
@@ -185,7 +203,8 @@ const Feed = () => {
               >
                 <div>
                   <h3 className="text-[14px]">
-                    Profile Level <span className="text-primary font-medium">40% of 100</span>
+                    Profile Level{" "}
+                    <span className="text-primary font-medium">40% of 100</span>
                   </h3>
                   <h4 className="text-[16px] font-normal">
                     Complete your profile to start using Golvia app
@@ -205,7 +224,9 @@ const Feed = () => {
             {/* Feed Content */}
             <div>
               <InfiniteScroll result={result} ref={sentinelRef}>
-                {result.currentData?.data.map((post) => <FeedItem key={post.id} post={post} />)}
+                {result.currentData?.data.map((post) => (
+                  <FeedItem key={post.id} post={post} />
+                ))}
               </InfiniteScroll>
 
               {!result.currentData && (
@@ -213,16 +234,34 @@ const Feed = () => {
                   <Stack direction="row" spacing={2}>
                     <Skeleton variant="circular" width={50} height={50} />
                     <Stack>
-                      <Skeleton variant="text" sx={{ fontSize: "1rem" }} width={200} />
-                      <Skeleton variant="text" sx={{ fontSize: "1rem" }} width={150} />
+                      <Skeleton
+                        variant="text"
+                        sx={{ fontSize: "1rem" }}
+                        width={200}
+                      />
+                      <Skeleton
+                        variant="text"
+                        sx={{ fontSize: "1rem" }}
+                        width={150}
+                      />
                     </Stack>
                   </Stack>
 
                   <Skeleton variant="rounded" width="100%" height={400} />
                   <Stack width="100%" direction="row" spacing={2}>
                     <Skeleton variant="circular" width={30} height={30} />
-                    <Skeleton variant="text" sx={{ fontSize: "1rem" }} width={100} height={30} />
-                    <Skeleton variant="text" sx={{ fontSize: "1rem" }} width={100} height={30} />
+                    <Skeleton
+                      variant="text"
+                      sx={{ fontSize: "1rem" }}
+                      width={100}
+                      height={30}
+                    />
+                    <Skeleton
+                      variant="text"
+                      sx={{ fontSize: "1rem" }}
+                      width={100}
+                      height={30}
+                    />
                   </Stack>
                 </Stack>
               )}

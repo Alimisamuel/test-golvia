@@ -24,9 +24,9 @@ import { IoIosArrowRoundDown } from "react-icons/io";
 import "aos/dist/aos.css";
 import Aos from "aos";
 import { useAppSelector } from "store/hooks";
-import { selectToken } from "pages/auth/slice";
+import { selectToken } from "api/slice/auth";
 import { Navigate, Link } from "react-router-dom";
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 import Head from "common/Head";
 
 interface TabPanelProps {
@@ -115,7 +115,7 @@ function Home() {
   }, [value]);
 
   return user ? (
-      <Navigate to={PATHS.FEED} replace/>
+    <Navigate to={PATHS.FEED} replace />
   ) : (
     <>
       <Head

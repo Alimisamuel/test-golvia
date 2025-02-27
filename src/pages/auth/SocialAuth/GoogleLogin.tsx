@@ -6,9 +6,9 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import BackdropLoader from "components/loaders/Backdrop";
-import { loginWithGoogleAsync, selectAuth } from "../slice";
+import { loginWithGoogleAsync, selectAuth } from "../../../api/slice/auth";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 
 // type LocationState = {
 //   redirectTo?: string;
@@ -22,7 +22,10 @@ const GoogleLogin: React.FC = () => {
   const navigate = useNavigate();
   const [isLoading] = useState<boolean>(false);
 
-  const handleAlert = (variant: "success" | "error" | "info" | "warning", message: string) => {
+  const handleAlert = (
+    variant: "success" | "error" | "info" | "warning",
+    message: string
+  ) => {
     enqueueSnackbar(message, { variant });
   };
 
@@ -36,15 +39,33 @@ const GoogleLogin: React.FC = () => {
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
-        const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
-          headers: {
-            Authorization: `Bearer ${tokenResponse.access_token}`,
-          },
-        });
+        const userInfo = await axios.get(
+          "https://www.googleapis.com/oauth2/v3/userinfo",
+          {
+            headers: {
+              Authorization: `Bearer ${tokenResponse.access_token}`,
+            },
+          }
+        );
 
-        const { sub, name, given_name, family_name, picture, email, email_verified } =
-          userInfo?.data;
-        handleLogin(sub, email, email_verified, name, picture, given_name, family_name);
+        const {
+          sub,
+          name,
+          given_name,
+          family_name,
+          picture,
+          email,
+          email_verified,
+        } = userInfo?.data;
+        handleLogin(
+          sub,
+          email,
+          email_verified,
+          name,
+          picture,
+          given_name,
+          family_name
+        );
       } catch (error) {
         console.error("Error fetching user info:", error);
         handleAlert("error", `Error fetching user info: ${String(error)}`);
@@ -141,7 +162,11 @@ const GoogleLogin: React.FC = () => {
       >
         {/* <img src={GoogleIcon} width={20} alt="Google Icon" />{" "} */}
         <Typography sx={{ ml: 1, color: "#151515", fontSize: "14px" }}>
-          {authState.loading ? <CircularProgress size={20} /> : "  Continue with Google"}
+          {authState.loading ? (
+            <CircularProgress size={20} />
+          ) : (
+            "  Continue with Google"
+          )}
         </Typography>
       </Button>
     </>

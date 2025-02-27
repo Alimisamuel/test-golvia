@@ -22,11 +22,11 @@ import Avatar1 from "../../assets/dummy_avatar_img/avatar_img.svg";
 import { IoMdSettings } from "react-icons/io";
 import { FaBell } from "react-icons/fa6";
 import { MdPeopleAlt } from "react-icons/md";
-import { PATHS } from "../../Routes/routes.path";
+import { PATHS } from "../../routes/path";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import { Layout } from "constants/layers";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { logOut, selectToken } from "pages/auth/slice";
+import { logOut, selectToken } from "api/slice/auth";
 import Search from "./Search";
 import { IoMdFootball } from "react-icons/io";
 import { ReactComponent as BlogIcon } from "assets/icons/blog.svg";
@@ -42,7 +42,7 @@ const Header = ({ path }: HeaderProps) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { firstName, asset } = useAuthDetails();
-  const location = useLocation()
+  const location = useLocation();
   // POPPER
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
@@ -63,7 +63,7 @@ const Header = ({ path }: HeaderProps) => {
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(logOut());
-    navigate(PATHS.LOGIN,{ state: { redirectTo: location.pathname } });
+    navigate(PATHS.LOGIN, { state: { redirectTo: location.pathname } });
   };
 
   const { email } = useAuthDetails();
@@ -228,7 +228,7 @@ const Header = ({ path }: HeaderProps) => {
               spacing={2}
               sx={{ display: "flex", alignItems: "center", columnGap: 2 }}
             >
-              <Link to={PATHS.LOGIN}    state={{ redirectTo: location.pathname }}> 
+              <Link to={PATHS.LOGIN} state={{ redirectTo: location.pathname }}>
                 <Button
                   variant="outlined"
                   sx={{

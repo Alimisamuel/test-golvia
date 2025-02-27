@@ -1,9 +1,15 @@
-import { Box, Button, CircularProgress, Typography, InputLabel } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Typography,
+  InputLabel,
+} from "@mui/material";
 import React, { useState } from "react";
 import AuthLayout from "layouts/AuthLayout";
 import { useLocation, useNavigate } from "react-router-dom";
-import { PATHS } from "Routes/routes.path";
-import { resendOtp, verifyOtp } from "api";
+import { PATHS } from "routes/path";
+import { resendOtp, verifyOtp } from "api/auth";
 import OtpInput from "pages/auth/OtpInput";
 import useAlert from "components/alert/useAlert";
 
@@ -49,7 +55,11 @@ const VerifyOtp: React.FC = () => {
       .catch((err) => {
         console.log(err);
         handleAlert({
-          message: `${err.message.includes("Request") ? "We apologize for the inconvenience. We are working to resolve the issue. Please try again later." : err.Messages}`,
+          message: `${
+            err.message.includes("Request")
+              ? "We apologize for the inconvenience. We are working to resolve the issue. Please try again later."
+              : err.Messages
+          }`,
           variant: "error",
         });
       })
@@ -97,7 +107,10 @@ const VerifyOtp: React.FC = () => {
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(
+      2,
+      "0"
+    )}`;
   };
   return (
     <AuthLayout>
@@ -112,9 +125,12 @@ const VerifyOtp: React.FC = () => {
           height: { lg: "100%", md: "100%", sm: "auto", xs: "auto" },
         }}
       >
-        <Typography sx={{ fontWeight: 500, fontSize: "27px" }}>Hello, {fullName}</Typography>
+        <Typography sx={{ fontWeight: 500, fontSize: "27px" }}>
+          Hello, {fullName}
+        </Typography>
         <Typography sx={{ color: "#565656", mt: 2 }}>
-          We have sent you a verification code to <span style={{ color: "#6A7280" }}></span>
+          We have sent you a verification code to{" "}
+          <span style={{ color: "#6A7280" }}></span>
           {maskedEmail}
         </Typography>
 
@@ -130,7 +146,9 @@ const VerifyOtp: React.FC = () => {
                 Resend OTP
               </Button>
             ) : (
-              <InputLabel sx={{ mt: 2 }}>OTP Expires in {formatTime(timeLeft)}</InputLabel>
+              <InputLabel sx={{ mt: 2 }}>
+                OTP Expires in {formatTime(timeLeft)}
+              </InputLabel>
             )}
 
             <Button

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AxiosResponse } from "axios";
-import { ConnectionApiResponse } from "api/types";
-import { acceptConnection } from "api";
+import { ConnectionApiResponse } from "models/network";
+import { acceptConnection } from "api/network";
 import useAlert from "components/alert/useAlert";
 
 interface UseCreateConnectionResult {

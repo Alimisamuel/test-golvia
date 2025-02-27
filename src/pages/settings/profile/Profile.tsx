@@ -18,7 +18,7 @@ import SettingsLayout from "layouts/SettingsLayout";
 import { TbPhotoEdit } from "react-icons/tb";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import { Link, useNavigate } from "react-router-dom";
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 import logo from "../../../assets/logo/logo-blue.svg";
 import { PiPhoneLight } from "react-icons/pi";
 import Icons from "constants/Icons";
@@ -31,7 +31,7 @@ import FormatProfileType from "./Utils/FormatProfileType";
 import { CgFeed } from "react-icons/cg";
 import EditCoverPhoto from "./Utils/EditCoverPhoto";
 import { useGetApi } from "api/hooks/useGetApi";
-import { getActivityStat, getProfileViewed } from "api";
+import { getActivityStat, getProfileViewed } from "api/profile";
 import { HiOutlineEye } from "react-icons/hi2";
 import icons from "../../../constants/Icons";
 
@@ -632,7 +632,7 @@ const MyAnalytics = () => {
                 flex: 1,
                 px: 2,
                 boxSizing: "border-box",
-                borderLeft: { xs: "none", md:  "1px solid #CCCCCC" },
+                borderLeft: { xs: "none", md: "1px solid #CCCCCC" },
                 py: 2,
               }}
             >

@@ -1,7 +1,7 @@
 import Header from "components/headers/Header";
 import React from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 import {
   Box,
   Divider,
@@ -144,10 +144,17 @@ const PolicyLayouts = () => {
                       width: "100%",
                     }}
                   >
-                    <Typography sx={{ fontSize: "14px", color: isMatch ? "#fff" : "#000" }}>
+                    <Typography
+                      sx={{
+                        fontSize: "14px",
+                        color: isMatch ? "#fff" : "#000",
+                      }}
+                    >
                       {list.name}
                     </Typography>
-                    <GoChevronRight style={{ color: isMatch ? "#fff" : "#000" }} />
+                    <GoChevronRight
+                      style={{ color: isMatch ? "#fff" : "#000" }}
+                    />
                   </Box>
                 </ListItemButton>
               );

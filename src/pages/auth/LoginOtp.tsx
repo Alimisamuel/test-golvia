@@ -1,12 +1,18 @@
-import { Box, Button, CircularProgress, Typography, InputLabel } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Typography,
+  InputLabel,
+} from "@mui/material";
 import React, { useState } from "react";
 import AuthLayout from "layouts/AuthLayout";
 import { useLocation, useNavigate } from "react-router-dom";
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 import OtpInput from "pages/auth/OtpInput";
 import useAlert from "components/alert/useAlert";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { login2FactorAsync, selectAuth } from "./slice";
+import { login2FactorAsync, selectAuth } from "../../api/slice/auth";
 
 const LoginOtp: React.FC = () => {
   const [otp, setOtp] = useState<string>("");
@@ -35,7 +41,9 @@ const LoginOtp: React.FC = () => {
 
   const handleVerifyOtp = async () => {
     try {
-      const response = await dispatch(login2FactorAsync({ email, otp })).unwrap();
+      const response = await dispatch(
+        login2FactorAsync({ email, otp })
+      ).unwrap();
       if (response?.token) {
         navigate(PATHS.FEED);
       }
@@ -79,7 +87,10 @@ const LoginOtp: React.FC = () => {
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(
+      2,
+      "0"
+    )}`;
   };
 
   return (
@@ -99,7 +110,8 @@ const LoginOtp: React.FC = () => {
           2-Factor Authorization Login
         </Typography>
         <Typography sx={{ color: "#565656", mt: 2 }}>
-          We have sent you a verification code to <span style={{ color: "#6A7280" }}></span>
+          We have sent you a verification code to{" "}
+          <span style={{ color: "#6A7280" }}></span>
           {maskedEmail}
         </Typography>
 
@@ -107,11 +119,15 @@ const LoginOtp: React.FC = () => {
           <form>
             <OtpInput value={otp} handleChange={handleChange} />
             {timeLeft <= 0 ? (
-              <Button sx={{ color: "primary", textDecoration: "underline", mt: 2 }}>
+              <Button
+                sx={{ color: "primary", textDecoration: "underline", mt: 2 }}
+              >
                 Resend OTP
               </Button>
             ) : (
-              <InputLabel sx={{ mt: 2 }}>OTP Expires in {formatTime(timeLeft)}</InputLabel>
+              <InputLabel sx={{ mt: 2 }}>
+                OTP Expires in {formatTime(timeLeft)}
+              </InputLabel>
             )}
 
             <Button

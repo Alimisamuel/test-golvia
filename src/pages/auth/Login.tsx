@@ -16,9 +16,9 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import AuthLayout from "../../layouts/AuthLayout";
 import GoogleLogin from "./SocialAuth/GoogleLogin";
-import { PATHS } from "../../Routes/routes.path";
+import { PATHS } from "../../routes/path";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { loginAsync, selectAuth } from "./slice";
+import { loginAsync, selectAuth } from "../../api/slice/auth";
 import useAlert from "components/alert/useAlert";
 
 const Login = () => {
@@ -73,7 +73,9 @@ const Login = () => {
           pb: 6,
         }}
       >
-        <Typography sx={{ fontWeight: 500, fontSize: "27px" }}>Score Your Dream Goal</Typography>
+        <Typography sx={{ fontWeight: 500, fontSize: "27px" }}>
+          Score Your Dream Goal
+        </Typography>
         <Typography sx={{ mt: 0, textAlign: "center", color: "primary.main" }}>
           Sports, Networking, and Technology
         </Typography>
@@ -82,7 +84,9 @@ const Login = () => {
         </GoogleOAuthProvider>
 
         <Divider sx={{ width: "100%", my: 3 }}>
-          <Typography sx={{ color: "#565656", mx: 2 }}>Sign in with email address</Typography>
+          <Typography sx={{ color: "#565656", mx: 2 }}>
+            Sign in with email address
+          </Typography>
         </Divider>
 
         <Box sx={{ mt: 2, width: "100%" }}>
@@ -123,7 +127,10 @@ const Login = () => {
                 style: { borderRadius: "9px" },
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword((prev) => !prev)} edge="end">
+                    <IconButton
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      edge="end"
+                    >
                       {showPassword ? (
                         <VisibilityOutlinedIcon sx={{ fontSize: "16px" }} />
                       ) : (
@@ -135,7 +142,9 @@ const Login = () => {
               }}
             />
             <Link to={PATHS.FORGOT_PASSWORD}>
-              <Typography sx={{ fontSize: "12px", mt: 1, textDecoration: "underline" }}>
+              <Typography
+                sx={{ fontSize: "12px", mt: 1, textDecoration: "underline" }}
+              >
                 Forgot Password
               </Typography>
             </Link>

@@ -19,7 +19,7 @@ import {
   useGetChallengeByIdQuery,
   // useGetLeaderboardQuery,
   // useLazyJoinChallengeQuery,
-} from "services/challenge/api";
+} from "api/challenge";
 // import useAlert from "components/alert/useAlert";
 // import useNavigateWithHash from "pages/settings/profile/hooks/useNavigateWithHash";
 // import { PATHS } from "Routes/routes.path";
@@ -30,8 +30,6 @@ import ChallengePostPromptModal from "pages/feeds/ChallangePostPromptModal";
 import ShareModal from "pages/feeds/Post/ShareModal";
 
 export default function GlobalNetworkWidget() {
-
-
   const [expanded, setExpanded] = useState(false);
   // const [joinChallengeTrigger] = useLazyJoinChallengeQuery();
   const [country] = useState<string>("England");
@@ -45,7 +43,9 @@ export default function GlobalNetworkWidget() {
   //   },
   //   { pollingInterval: 300000 }
   // );
-  const [openChallengePromptModal, setChallengePromptModalOpen] = useState(false);
+  const [openChallengePromptModal, setChallengePromptModalOpen] = useState(
+    false
+  );
   const [openShareModal, setOpenShareModal] = useState(false);
   const { asset } = useAuthDetails();
 
@@ -62,8 +62,6 @@ export default function GlobalNetworkWidget() {
   //     setChallengePromptModalOpen(true);
   //   });
   // };
-
-
 
   return (
     <>
@@ -341,22 +339,34 @@ export default function GlobalNetworkWidget() {
         <div>
           <h2 className="text-sm font-medium">
             Try Glovia{" "}
-            <span className="bg-[#FFF0D0] text-secondary ml-1 py-1 px-2 rounded-2xl">Premium</span>
+            <span className="bg-[#FFF0D0] text-secondary ml-1 py-1 px-2 rounded-2xl">
+              Premium
+            </span>
           </h2>
-          <h3 className="mt-2 text-2xl font-medium">Reach unlimited audience</h3>
-          <h4 className="mt-1 text-octenary font-normal text-sm">Through video uploads</h4>
+          <h3 className="mt-2 text-2xl font-medium">
+            Reach unlimited audience
+          </h3>
+          <h4 className="mt-1 text-octenary font-normal text-sm">
+            Through video uploads
+          </h4>
         </div>
         <div className="mt-2 flex items-center">
           <div className="relative w-2/3">
             <div className="bg-white rounded-full p-[0.3px] inline-flex">
               <Avatar
-                src={asset?.profilePictureUrl ? asset?.profilePictureUrl : Avartar1}
+                src={
+                  asset?.profilePictureUrl ? asset?.profilePictureUrl : Avartar1
+                }
                 alt={"a user"}
                 sx={{ width: 100, height: 100 }}
               />
             </div>
             <div className="rounded-full  inline-flex absolute top-0 right-[60px] z-50">
-              <Avatar src={Avartar4} alt={"a user"} sx={{ width: 30, height: 30 }} />
+              <Avatar
+                src={Avartar4}
+                alt={"a user"}
+                sx={{ width: 30, height: 30 }}
+              />
             </div>
             <div className="bg-white rounded-full p-1 inline-flex absolute top-9 left-24 z-50">
               <div className="bg-gray-200 w-8 h-8 rounded-full inline-flex items-center justify-center">
@@ -364,7 +374,11 @@ export default function GlobalNetworkWidget() {
               </div>
             </div>
             <div className="rounded-full inline-flex absolute top-11 right-6 z-50">
-              <Avatar src={Avartar2} alt={"a user"} sx={{ width: 20, height: 20 }} />
+              <Avatar
+                src={Avartar2}
+                alt={"a user"}
+                sx={{ width: 20, height: 20 }}
+              />
             </div>
           </div>
           <button className="bg-secondary text-white rounded-2xl py-2 px-3 text-sm font-medium">

@@ -1,4 +1,4 @@
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 import { ReactComponent as ProfileIcon } from "assets/icons/user-square.svg";
 import { ReactComponent as PasswordIcon } from "assets/icons/lock.svg";
 // import { ReactComponent as NotificationIcon } from "assets/icons/notification.svg";
@@ -16,7 +16,7 @@ import { GoShieldLock } from "react-icons/go";
 export const settingsNavItems = {
   [PATHS.SETTINGS.PROFILE]: {
     label: "Profile",
-   icon: RxAvatar,
+    icon: RxAvatar,
   },
   [PATHS.SETTINGS.PASSWORD_RESET]: {
     label: "Sign in & Security",
@@ -61,7 +61,9 @@ export default function SettingsHeader() {
           left="50%"
           className="translate-x-[-50%]"
         >
-          {isOpen ? "Settings" : settingsNavItems[activeNav]?.label || "Default Label"}
+          {isOpen
+            ? "Settings"
+            : settingsNavItems[activeNav]?.label || "Default Label"}
         </Typography>
       </Stack>
 
@@ -77,36 +79,38 @@ export default function SettingsHeader() {
         }}
       >
         <Stack component="ul" role="list" paddingY={1} className="">
-          {Object.entries(settingsNavItems).map(([key, { label, icon: Icon }]) => (
-            <Stack
-              key={label}
-              direction="row"
-              justifyContent="space-between"
-              paddingLeft={4}
-              paddingRight={3}
-              alignItems="center"
-              component={Link}
-              to={key}
-              onClick={toggleDrawer}
-              width="100%"
-              height={56}
-              spacing={3}
-              marginBottom={2}
-              className="bg-white rounded-lg"
-            >
-              <Stack direction="row" alignItems="center" spacing={1}>
-                <Icon width="22px" height="22px" />
-                <Typography
-                  variant="p$18"
-                  fontWeight="medium"
-                  className="min-w-0 flex-auto text-inherit"
-                >
-                  {label}
-                </Typography>
+          {Object.entries(settingsNavItems).map(
+            ([key, { label, icon: Icon }]) => (
+              <Stack
+                key={label}
+                direction="row"
+                justifyContent="space-between"
+                paddingLeft={4}
+                paddingRight={3}
+                alignItems="center"
+                component={Link}
+                to={key}
+                onClick={toggleDrawer}
+                width="100%"
+                height={56}
+                spacing={3}
+                marginBottom={2}
+                className="bg-white rounded-lg"
+              >
+                <Stack direction="row" alignItems="center" spacing={1}>
+                  <Icon width="22px" height="22px" />
+                  <Typography
+                    variant="p$18"
+                    fontWeight="medium"
+                    className="min-w-0 flex-auto text-inherit"
+                  >
+                    {label}
+                  </Typography>
+                </Stack>
+                <ChevronRightIcon width="14px" height="14px" />
               </Stack>
-              <ChevronRightIcon width="14px" height="14px" />
-            </Stack>
-          ))}
+            )
+          )}
         </Stack>
       </Drawer>
     </>

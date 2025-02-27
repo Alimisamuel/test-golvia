@@ -1,5 +1,5 @@
 import { PaginatedResponse } from "common/hooks/pagination/usePagination";
-import { challengeApi } from "services/challenge/api";
+import { challengeApi } from "api/challenge";
 import { api } from "store/api";
 import { stringifyParams } from "utils/stringifyParams";
 

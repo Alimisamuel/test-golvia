@@ -3,14 +3,11 @@ import { useGetBlogQuery } from "api/blog";
 import { ReactComponent as IconRight } from "assets/icons/arrow-right.svg";
 import AccessLayout from "layouts/AccessLayout";
 import { Link } from "react-router-dom";
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 import BlogItem from "./BlogItem";
-
 
 export default function Blog() {
   const { data: blogs } = useGetBlogQuery(null);
-
-
 
   return (
     <AccessLayout path={PATHS.BLOG}>
@@ -68,16 +65,27 @@ export default function Blog() {
             </Stack>
           </Box>
 
-          <Grid container spacing={2.5} rowSpacing={7} sx={{pb:5}}>
-            {blogs?.data.slice(1).map((blog) => <BlogItem blog={blog} />)}
+          <Grid container spacing={2.5} rowSpacing={7} sx={{ pb: 5 }}>
+            {blogs?.data.slice(1).map((blog) => (
+              <BlogItem blog={blog} />
+            ))}
           </Grid>
         </>
       )}
 
       {!blogs?.data && (
         <Stack spacing={2} className="mt-2">
-          <Box justifyItems="center" alignSelf="center" width={{ xs: "100%", md: "80%" }}>
-            <Skeleton variant="rectangular" sx={{ fontSize: "1rem" }} width="100%" height={400} />
+          <Box
+            justifyItems="center"
+            alignSelf="center"
+            width={{ xs: "100%", md: "80%" }}
+          >
+            <Skeleton
+              variant="rectangular"
+              sx={{ fontSize: "1rem" }}
+              width="100%"
+              height={400}
+            />
             <Stack mt={2} mb={4} alignItems="center">
               <Skeleton variant="text" sx={{ fontSize: "1rem" }} width={200} />
               <Skeleton variant="text" sx={{ fontSize: "1rem" }} width={400} />
@@ -88,11 +96,7 @@ export default function Blog() {
           <Grid container spacing={2.5} rowSpacing={7}>
             {[...Array(6)].map((item, i) => (
               <Grid size={{ lg: 4, md: 4, sm: 6, xs: 6 }} key={i}>
-                <Skeleton
-                  variant="rectangular"
-                  width="100%"
-                  height={200}
-                />
+                <Skeleton variant="rectangular" width="100%" height={200} />
               </Grid>
             ))}
           </Grid>

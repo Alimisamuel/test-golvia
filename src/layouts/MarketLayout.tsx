@@ -7,7 +7,7 @@ import CompleteProfileModal from "../components/modals/CompleteProfileModal";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import { HeaderHeight } from "constants/layers";
 import { Link } from "react-router-dom";
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 import { convertToTitleCase } from "pages/network/GlobalNetwork";
 import AccessLayout from "./AccessLayout";
 import { ActivityStat } from "./FeedLayout";
@@ -51,7 +51,10 @@ const MarketLayout: React.FC<MarketLayoutProps> = ({ children }) => {
             maxHeight={{ xs: mobileMaxHeight, md: desktopMaxHeight }}
             className=" w-2/4 overflow-y-auto hidden md:block scrollbar-none"
           >
-            <div className="bg-white rounded-2xl" style={{ border: "0.5px solid #dfdeda " }}>
+            <div
+              className="bg-white rounded-2xl"
+              style={{ border: "0.5px solid #dfdeda " }}
+            >
               <div className="px-8 pt-8">
                 <Avatar
                   src={profilePicture ? profilePicture : Avartar1}
@@ -64,8 +67,8 @@ const MarketLayout: React.FC<MarketLayoutProps> = ({ children }) => {
                     {profileType === "FANBASE"
                       ? "Fan"
                       : profileType === "ATHLETES"
-                        ? "Athelete"
-                        : convertToTitleCase(profileType || "")}{" "}
+                      ? "Athelete"
+                      : convertToTitleCase(profileType || "")}{" "}
                     - <span className="text-gray-500">{sportType}</span>
                   </h4>
                 </div>
@@ -109,25 +112,35 @@ const MarketLayout: React.FC<MarketLayoutProps> = ({ children }) => {
                       </div>
                     )}
 
-                  <Link to={PATHS.SETTINGS.PROFILE}>
-                    <p className="text-xs text-blue-500 underline">My Profile</p>
-                  </Link>
-                </div>
-              </>
-            )}
-          </div>
-       <ActivityStat/>
-          <div className="mt-2">
-            <h3 className="text-septenary my-2 text-sm font-medium">Sponsored Posts</h3>
-            <div className="px-6 pt-6 bg-primary rounded-2xl ">
-              <div className="relative h-[300px]">
-                <h5 className="uppercase text-[#FFC67F] text-[9px] mb-3">Wolves vs Newcastle</h5>
-                <h5 className="text-white text-3xl">Charity Match Footballers Needed</h5>
                     <Link to={PATHS.SETTINGS.PROFILE}>
-                      <p className="text-xs text-blue-500 underline">My Profile</p>
+                      <p className="text-xs text-blue-500 underline">
+                        My Profile
+                      </p>
                     </Link>
                   </div>
-        </div>
+                </>
+              )}
+            </div>
+            <ActivityStat />
+            <div className="mt-2">
+              <h3 className="text-septenary my-2 text-sm font-medium">
+                Sponsored Posts
+              </h3>
+              <div className="px-6 pt-6 bg-primary rounded-2xl ">
+                <div className="relative h-[300px]">
+                  <h5 className="uppercase text-[#FFC67F] text-[9px] mb-3">
+                    Wolves vs Newcastle
+                  </h5>
+                  <h5 className="text-white text-3xl">
+                    Charity Match Footballers Needed
+                  </h5>
+                  <Link to={PATHS.SETTINGS.PROFILE}>
+                    <p className="text-xs text-blue-500 underline">
+                      My Profile
+                    </p>
+                  </Link>
+                </div>
+              </div>
             </div>
             <div className="mt-2 p-6 rounded-2xl bg-white border-[#dfdeda] border-[0.5px]">
               <h3 className="text-base mb-6">My Activity Stats</h3>
@@ -147,11 +160,17 @@ const MarketLayout: React.FC<MarketLayoutProps> = ({ children }) => {
               </div>
             </div>
             <div className="mt-2">
-              <h3 className="text-septenary my-2 text-sm font-medium">Sponsored Posts</h3>
+              <h3 className="text-septenary my-2 text-sm font-medium">
+                Sponsored Posts
+              </h3>
               <div className="px-6 pt-6 bg-primary rounded-2xl ">
                 <div className="relative h-[300px]">
-                  <h5 className="uppercase text-[#FFC67F] text-[9px] mb-3">Wolves vs Newcastle</h5>
-                  <h5 className="text-white text-3xl">Charity Match Footballers Needed</h5>
+                  <h5 className="uppercase text-[#FFC67F] text-[9px] mb-3">
+                    Wolves vs Newcastle
+                  </h5>
+                  <h5 className="text-white text-3xl">
+                    Charity Match Footballers Needed
+                  </h5>
 
                   <button className="mt-2 rounded-xl border text-primary bg-white px-3 py-1 text-sm font-medium">
                     Join team

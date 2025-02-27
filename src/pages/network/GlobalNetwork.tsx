@@ -12,7 +12,7 @@ import successTone from "../../assets/tone/success-tone.mp3";
 import { BsPeopleFill } from "react-icons/bs";
 import { RiSearch2Line } from "react-icons/ri";
 import { useGetApi } from "api/hooks/useGetApi";
-import { getRecievedConnectedUsers, getUnConnectedUsers } from "api";
+import { getRecievedConnectedUsers, getUnConnectedUsers } from "api/network";
 import images from "constants/images";
 import { useCreateConnect } from "./hooks/useCreateConnect";
 import { useEffect, useState } from "react";
@@ -29,7 +29,10 @@ export default function GlobalNetwork() {
   };
 
   const { sendUserToNextPage } = useNavigateWithHash();
-  const { createConnectionHandler, loadingButtonId: connectionLoader } = useCreateConnect();
+  const {
+    createConnectionHandler,
+    loadingButtonId: connectionLoader,
+  } = useCreateConnect();
 
   const { acceptConnectionHandler, loadingButtonId } = useAcceptConnection();
 
@@ -39,7 +42,9 @@ export default function GlobalNetwork() {
     await createToggleFollowHandler(email, id);
 
     setUpdatedUnconnectedUser((prevUsers) =>
-      prevUsers?.map((user) => (user.email === email ? { ...user, following: true } : user))
+      prevUsers?.map((user) =>
+        user.email === email ? { ...user, following: true } : user
+      )
     );
     playSuccessTone();
   };
@@ -49,7 +54,9 @@ export default function GlobalNetwork() {
 
     // Update user's status to "PENDING" on success
     setUpdatedUnconnectedUser((prevUsers) =>
-      prevUsers?.map((user) => (user.email === email ? { ...user, status: "PENDING" } : user))
+      prevUsers?.map((user) =>
+        user.email === email ? { ...user, status: "PENDING" } : user
+      )
     );
     playSuccessTone();
   };
@@ -58,17 +65,27 @@ export default function GlobalNetwork() {
 
     // Update user's status to "PENDING" on success
     setAcceptedUser((prevUsers) =>
-      prevUsers?.map((user) => (user.email === email ? { ...user, status: "PENDING" } : user))
+      prevUsers?.map((user) =>
+        user.email === email ? { ...user, status: "PENDING" } : user
+      )
     );
     playSuccessTone();
   };
 
-  const { data: unconnectedUser, loading: unConnectedLoader } = useGetApi(getUnConnectedUsers);
-  const { data: receivedconnectedUser, loading: recievedConnectedLoader } =
-    useGetApi(getRecievedConnectedUsers);
+  const { data: unconnectedUser, loading: unConnectedLoader } = useGetApi(
+    getUnConnectedUsers
+  );
+  const {
+    data: receivedconnectedUser,
+    loading: recievedConnectedLoader,
+  } = useGetApi(getRecievedConnectedUsers);
 
-  const [updatedUnconnectedUser, setUpdatedUnconnectedUser] = useState(unconnectedUser?.data);
-  const [updatedAcceptedUser, setAcceptedUser] = useState(receivedconnectedUser?.data);
+  const [updatedUnconnectedUser, setUpdatedUnconnectedUser] = useState(
+    unconnectedUser?.data
+  );
+  const [updatedAcceptedUser, setAcceptedUser] = useState(
+    receivedconnectedUser?.data
+  );
 
   useEffect(() => {
     setUpdatedUnconnectedUser(unconnectedUser?.data);
@@ -104,9 +121,15 @@ export default function GlobalNetwork() {
                 <UserListSkeleton length={5} variant="Card" />
               ) : !updatedAcceptedUser || updatedAcceptedUser?.length === 0 ? (
                 <div className="flex flex-col justify-center items-center w-full">
-                  <img src={images.emptyImg} alt="empty_connections" width={100} />
+                  <img
+                    src={images.emptyImg}
+                    alt="empty_connections"
+                    width={100}
+                  />
 
-                  <p className="mt-4 text-gray-500">You have no connection requests</p>
+                  <p className="mt-4 text-gray-500">
+                    You have no connection requests
+                  </p>
                 </div>
               ) : (
                 updatedAcceptedUser?.map((user, index) => (
@@ -126,14 +149,18 @@ export default function GlobalNetwork() {
                       }}
                     >
                       <Avatar
-                        onClick={() => sendUserToNextPage(user?.email, user?.firstName)}
+                        onClick={() =>
+                          sendUserToNextPage(user?.email, user?.firstName)
+                        }
                         src={user.profilePictureUrl}
                         sx={{ width: "50px", height: "50px" }}
                       />
 
                       <div className="mt-2 w-full ">
                         <InputLabel
-                          onClick={() => sendUserToNextPage(user?.email, user?.firstName)}
+                          onClick={() =>
+                            sendUserToNextPage(user?.email, user?.firstName)
+                          }
                           sx={{
                             maxWidth: "80%",
                             textAlign: "center",
@@ -152,19 +179,26 @@ export default function GlobalNetwork() {
                             color: "gray.light",
                           }}
                         >
-                          <FormatProfileType value={user?.profileType || ""} /> - {user.sportType}
+                          <FormatProfileType value={user?.profileType || ""} />{" "}
+                          - {user.sportType}
                         </InputLabel>
                       </div>
                       <Button
-                        onClick={() => handleAccept(user.email, index.toString())}
-                        startIcon={<BsPeopleFill style={{ fontSize: "14px" }} />}
+                        onClick={() =>
+                          handleAccept(user.email, index.toString())
+                        }
+                        startIcon={
+                          <BsPeopleFill style={{ fontSize: "14px" }} />
+                        }
                         disabled={loadingButtonId === index.toString()}
                         variant="outlined"
                         fullWidth
                         sx={{ mt: 2, mx: 1 }}
                       >
                         {loadingButtonId === index.toString() ? (
-                          <LinearProgress sx={{ width: "40px", height: "2px" }} />
+                          <LinearProgress
+                            sx={{ width: "40px", height: "2px" }}
+                          />
                         ) : user.status === "PENDING" ? (
                           "Accepted"
                         ) : (
@@ -198,7 +232,9 @@ export default function GlobalNetwork() {
           </div>
           <div className="py-4 ">
             <div className="flex justify-between items-center">
-              <h3 className="text-black font-medium">You may be interested in:</h3>
+              <h3 className="text-black font-medium">
+                You may be interested in:
+              </h3>
               {/* <Link className="text-primary text-xs" to={"/feed"}>
                 View all
               </Link> */}
@@ -213,7 +249,9 @@ export default function GlobalNetwork() {
                   <div className="flex items-center justify-between  pb-4">
                     <div className="flex items-center space-x-2">
                       <Avatar
-                        onClick={() => sendUserToNextPage(club?.email, club?.firstName)}
+                        onClick={() =>
+                          sendUserToNextPage(club?.email, club?.firstName)
+                        }
                         src={club.profilePictureUrl || images.defaultAvater}
                         alt={club.firstName}
                         className="w-10 h-10 rounded-full"
@@ -222,14 +260,19 @@ export default function GlobalNetwork() {
                       <div>
                         <div
                           className="flex items-centers space-x-1 cursor-pointer"
-                          onClick={() => sendUserToNextPage(club?.email, club?.firstName)}
+                          onClick={() =>
+                            sendUserToNextPage(club?.email, club?.firstName)
+                          }
                         >
                           <h5 className="text-sm font-normal">{`${club.firstName} ${club.lastName}`}</h5>
                           {/* <HiCheckBadge className="text-blue-400" /> */}
                         </div>
                         <div>
                           <p className="text-xs text-octenary">
-                            <FormatProfileType value={club?.profileType || ""} /> - {club.sportType}
+                            <FormatProfileType
+                              value={club?.profileType || ""}
+                            />{" "}
+                            - {club.sportType}
                           </p>
                         </div>
                       </div>
@@ -238,7 +281,9 @@ export default function GlobalNetwork() {
                       {club?.profileType === "TEAM" ? (
                         <Button
                           variant="outlined"
-                          onClick={() => handleToggleFollow(club.email, index.toString())}
+                          onClick={() =>
+                            handleToggleFollow(club.email, index.toString())
+                          }
                           disabled={connectionLoader === index.toString()}
                           sx={{
                             width: "110px",
@@ -251,9 +296,12 @@ export default function GlobalNetwork() {
                       ) : (
                         <Button
                           variant="contained"
-                          onClick={() => handleConnect(club.email, index.toString())}
+                          onClick={() =>
+                            handleConnect(club.email, index.toString())
+                          }
                           disabled={
-                            connectionLoader === index.toString() || club.status === "PENDING"
+                            connectionLoader === index.toString() ||
+                            club.status === "PENDING"
                           }
                           startIcon={
                             club.status === "PENDING" ? (
@@ -274,7 +322,9 @@ export default function GlobalNetwork() {
                           }}
                         >
                           {connectionLoader === index.toString() ? (
-                            <LinearProgress sx={{ width: "40px", height: "2px" }} />
+                            <LinearProgress
+                              sx={{ width: "40px", height: "2px" }}
+                            />
                           ) : club.status === "PENDING" ? (
                             "Pending"
                           ) : (
@@ -304,7 +354,10 @@ interface NumberMapperProps {
   variant: "Card" | "List"; // Define the expected prop type
 }
 
-export const UserListSkeleton: React.FC<NumberMapperProps> = ({ length, variant }) => {
+export const UserListSkeleton: React.FC<NumberMapperProps> = ({
+  length,
+  variant,
+}) => {
   const numbers = Array.from({ length }, (_, index) => index + 1);
   return (
     <>
@@ -321,7 +374,12 @@ export const UserListSkeleton: React.FC<NumberMapperProps> = ({ length, variant 
               }}
             >
               <Box sx={{ display: "flex", alignItems: "center", columnGap: 2 }}>
-                <Skeleton variant="circular" animation="wave" width={40} height={40} />
+                <Skeleton
+                  variant="circular"
+                  animation="wave"
+                  width={40}
+                  height={40}
+                />
                 <Box>
                   <Skeleton
                     variant="text"
@@ -360,7 +418,12 @@ export const UserListSkeleton: React.FC<NumberMapperProps> = ({ length, variant 
               borderRadius: "10px",
             }}
           >
-            <Skeleton variant="circular" animation="wave" width={50} height={50} />
+            <Skeleton
+              variant="circular"
+              animation="wave"
+              width={50}
+              height={50}
+            />
 
             <Box
               sx={{

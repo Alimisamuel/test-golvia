@@ -7,11 +7,11 @@ import useAuthDetails from "pages/auth/useAuthDetails";
 import { HeaderHeight } from "constants/layers";
 import GlobalNetworkWidget from "pages/network/GlobalNetworkWidget";
 import { Link } from "react-router-dom";
-import { PATHS } from "Routes/routes.path";
+import { PATHS } from "routes/path";
 import Ads from "components/Adverts/Ads";
 import FormatProfileType from "pages/settings/profile/Utils/FormatProfileType";
 import { useGetApi } from "api/hooks/useGetApi";
-import { getActivityStat } from "api";
+import { getActivityStat } from "api/profile";
 
 interface FeedLayoutProps {
   children: React.ReactNode;
@@ -45,9 +45,6 @@ export default forwardRef<HTMLElement, FeedLayoutProps>(function FeedLayout(
     profileType,
     sportType,
   } = useAuthDetails();
-
-
-
 
   return (
     <>
@@ -127,7 +124,7 @@ export default forwardRef<HTMLElement, FeedLayoutProps>(function FeedLayout(
               </>
             )}
           </div>
-       <ActivityStat/>
+          <ActivityStat />
           <div className="mt-2">
             <h3 className="text-septenary my-2 text-sm font-medium">
               Sponsored Posts
@@ -186,38 +183,34 @@ export default forwardRef<HTMLElement, FeedLayoutProps>(function FeedLayout(
   );
 });
 
-
-
-export const ActivityStat = () =>{
+export const ActivityStat = () => {
   const { data, loading } = useGetApi(getActivityStat);
 
-  const { impressions, postImpressions, profileViews } = data?.data || []; 
+  const { impressions, postImpressions, profileViews } = data?.data || [];
   return (
     <>
-       <div className="mt-2 p-6 rounded-2xl bg-white border-[#dfdeda] border-[0.5px]">
-            <div className="flex items-center justify-between mb-6">
-
-            <h3 className="text-base ">My Activity Stats</h3>
-{
-  loading && (<CircularProgress size={15}/>)
-}
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <Link to={PATHS.ACTIVITY_STAT.MY_PROFILE_VIEWS}>
-                <h4 className="text-[#7D7D7D]">Profile Views</h4></Link>
-                <h5 className="text-primary">{profileViews || "--"}</h5>
-              </div>
-              <div className="flex items-center justify-between">
-                <h4 className="text-[#7D7D7D]">Post Impression</h4>
-                <h5 className="text-primary">{postImpressions || "--"}</h5>
-              </div>
-              <div className="flex items-center justify-between">
-                <h4 className="text-[#7D7D7D]">Impressions</h4>
-                <h5 className="text-primary">{impressions || "--"}</h5>
-              </div>
-            </div>
+      <div className="mt-2 p-6 rounded-2xl bg-white border-[#dfdeda] border-[0.5px]">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-base ">My Activity Stats</h3>
+          {loading && <CircularProgress size={15} />}
+        </div>
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <Link to={PATHS.ACTIVITY_STAT.MY_PROFILE_VIEWS}>
+              <h4 className="text-[#7D7D7D]">Profile Views</h4>
+            </Link>
+            <h5 className="text-primary">{profileViews || "--"}</h5>
           </div>
+          <div className="flex items-center justify-between">
+            <h4 className="text-[#7D7D7D]">Post Impression</h4>
+            <h5 className="text-primary">{postImpressions || "--"}</h5>
+          </div>
+          <div className="flex items-center justify-between">
+            <h4 className="text-[#7D7D7D]">Impressions</h4>
+            <h5 className="text-primary">{impressions || "--"}</h5>
+          </div>
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};

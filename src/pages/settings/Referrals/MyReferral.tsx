@@ -1,4 +1,3 @@
-
 import {
   Typography,
   Box,
@@ -7,23 +6,21 @@ import {
   Button,
   IconButton,
   Divider,
-  CircularProgress,
-  Grid,
   Avatar,
   InputLabel,
   Skeleton,
 } from "@mui/material";
 import SettingsLayout from "layouts/SettingsLayout";
-import icons from "pages/Home/constant/icons";
-import React, { useEffect, useState } from "react";
+import icons from "pages/home/constant/icons";
+import { useEffect, useState } from "react";
 import { IoLinkOutline } from "react-icons/io5";
 import { SlSocialFacebook } from "react-icons/sl";
 import { FaWhatsapp } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
 import { MdDone } from "react-icons/md";
 import { AiOutlineLinkedin } from "react-icons/ai";
-import { IoLogoInstagram } from "react-icons/io5";
-import { getMyReferrals, getReferalLink } from "api";
+// import { IoLogoInstagram } from "react-icons/io5";
+import { getMyReferrals, getReferalLink } from "api/referral";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import BackdropLoader from "components/loaders/Backdrop";
 import useCopyToClipboard from "common/hooks/useCopyToClipboard";
@@ -84,8 +81,8 @@ const MyReferral = () => {
     setIsLoading(true);
     await getReferalLink(email || "")
       .then((res) => {
-     const refValue = extractRefFromString(res?.data);
-     const url = `https://golviasports.com/auth/registration?ref=${refValue}`
+        const refValue = extractRefFromString(res?.data);
+        const url = `https://golviasports.com/auth/registration?ref=${refValue}`;
         setLink(url);
         handleGetMyReferrals(res?.data);
       })

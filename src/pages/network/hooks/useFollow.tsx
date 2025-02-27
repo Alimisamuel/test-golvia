@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AxiosResponse } from "axios";
-import { ConnectionApiResponse } from "api/types";
-import { toggleFollow } from "api";
+import { ConnectionApiResponse } from "models/network";
+import { toggleFollow } from "api/network";
 import useAlert from "components/alert/useAlert";
 
 interface UseToggleFollowResult {

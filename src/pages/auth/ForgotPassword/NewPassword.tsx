@@ -1,11 +1,17 @@
 import { useState } from "react";
 import Icons from "constants/Icons";
 import { Link } from "react-router-dom";
-import { PATHS } from "Routes/routes.path";
-import { Button, TextField, InputAdornment, IconButton, Typography } from "@mui/material";
+import { PATHS } from "routes/path";
+import {
+  Button,
+  TextField,
+  InputAdornment,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
-import { cofirmForgetPassword } from "api";
+import { cofirmForgetPassword } from "api/auth";
 import useAlert from "components/alert/useAlert";
 import BackdropLoader from "components/loaders/Backdrop";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
@@ -53,16 +59,23 @@ const NewPassword = () => {
                 type={showPassword ? "text" : "password"}
                 fullWidth
                 value={newPassword}
-                onChange={(e) => setPasswords({ ...passwords, newPassword: e.target.value })}
+                onChange={(e) =>
+                  setPasswords({ ...passwords, newPassword: e.target.value })
+                }
                 InputProps={{
                   style: { borderRadius: "9px" },
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                      <IconButton
+                        onClick={() => setShowPassword(!showPassword)}
+                        edge="end"
+                      >
                         {showPassword ? (
                           <VisibilityOutlinedIcon sx={{ fontSize: "16px" }} />
                         ) : (
-                          <VisibilityOffOutlinedIcon sx={{ fontSize: "16px" }} />
+                          <VisibilityOffOutlinedIcon
+                            sx={{ fontSize: "16px" }}
+                          />
                         )}
                       </IconButton>
                     </InputAdornment>
@@ -80,11 +93,16 @@ const NewPassword = () => {
                   style: { borderRadius: "9px" },
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                      <IconButton
+                        onClick={() => setShowPassword(!showPassword)}
+                        edge="end"
+                      >
                         {showPassword ? (
                           <VisibilityOutlinedIcon sx={{ fontSize: "16px" }} />
                         ) : (
-                          <VisibilityOffOutlinedIcon sx={{ fontSize: "16px" }} />
+                          <VisibilityOffOutlinedIcon
+                            sx={{ fontSize: "16px" }}
+                          />
                         )}
                       </IconButton>
                     </InputAdornment>
@@ -111,7 +129,10 @@ const NewPassword = () => {
                 </Button>
 
                 <Link to={PATHS.LOGIN}>
-                  <p className="mt-6 text-xs text-center text-primary underline"> Back to Login</p>
+                  <p className="mt-6 text-xs text-center text-primary underline">
+                    {" "}
+                    Back to Login
+                  </p>
                 </Link>
               </div>
             </div>
@@ -127,10 +148,18 @@ const NewPassword = () => {
                 color: "#3EC28B",
               }}
             />
-            <Typography sx={{ fontWeight: 600, fontSize: "20px", mt: 3 }}>All Done!</Typography>
-            <Typography sx={{ mt: 1 }}>Your password has been reset successfully</Typography>
+            <Typography sx={{ fontWeight: 600, fontSize: "20px", mt: 3 }}>
+              All Done!
+            </Typography>
+            <Typography sx={{ mt: 1 }}>
+              Your password has been reset successfully
+            </Typography>
             <Link to={PATHS.LOGIN}>
-              <Button variant="contained" fullWidth sx={{ py: 2, mt: 5, px: 5 }}>
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{ py: 2, mt: 5, px: 5 }}
+              >
                 Back to Login
               </Button>
             </Link>
