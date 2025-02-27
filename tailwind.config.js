@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-const { colorMap } = require("./src/types/colors");
-const { getSpacingSafeList } = require("./src/types/spaces");
+const { colorMap } = require("./src/utils/colors");
+const { getSpacingSafeList } = require("./src/utils/spaces");
 
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
