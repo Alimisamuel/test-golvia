@@ -15,7 +15,7 @@ import AuthLayout from "../../layouts/AuthLayout";
 import Grid from "@mui/material/Grid2";
 import { Link, useNavigate } from "react-router-dom";
 import CountrySelect from "../../components/input/CountrySelect";
-import { PATHS } from "../../Routes/path";
+import { PATHS } from "../../Routes/routes.path";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import { registerUser } from "../../api/auth";

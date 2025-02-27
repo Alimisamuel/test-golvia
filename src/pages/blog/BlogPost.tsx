@@ -8,7 +8,7 @@ import { ReactComponent as LinkedinIcon } from "assets/icons/socials/linkedin.sv
 import { ReactComponent as FacebookIcon } from "assets/icons/socials/facebook.svg";
 // import { ReactComponent as WhatsappIcon } from "assets/icons/socials/whatsapp.svg";
 import share from "common/share";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import { getTimeAgo } from "helpers/Formatters";
 
 export default function BlogPost() {

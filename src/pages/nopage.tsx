@@ -3,7 +3,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import images from "../constants/images";
 import { Link } from "react-router-dom";
-import { PATHS } from "../Routes/path";
+import { PATHS } from "../Routes/routes.path";
 
 const NoPage = () => {
   return (

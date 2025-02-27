@@ -3,7 +3,7 @@ import { Avatar, Box, Modal } from "@mui/material";
 import Avartar1 from "../../assets/dummy_avatar_img/avatar_img.svg";
 import CircularLoader from "../loaders/CircularLoader";
 import { useNavigate } from "react-router-dom";
-import { PATHS } from "../../Routes/path";
+import { PATHS } from "../../Routes/routes.path";
 
 interface CompleteProfileModalProps {
   open: boolean;

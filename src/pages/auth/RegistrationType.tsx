@@ -17,7 +17,7 @@ import img3 from "../../assets/icons/registration_type/3.svg";
 import img5 from "../../assets/icons/registration_type/5.svg";
 import img7 from "../../assets/icons/registration_type/7.svg";
 import { IoIosCheckmarkCircle } from "react-icons/io";
-import { PATHS } from "../../Routes/path";
+import { PATHS } from "../../Routes/routes.path";
 import { SPORTS } from "../../assets/data/data";
 import { submitReferral } from "../../api/referral";
 import { registrationType } from "api/profile";

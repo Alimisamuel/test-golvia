@@ -8,7 +8,7 @@ import { useSnackbar } from "notistack";
 import BackdropLoader from "components/loaders/Backdrop";
 import { registerGoogleAsync, selectAuth } from "../../../api/slice/auth";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 
 const GoogleSignup: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();

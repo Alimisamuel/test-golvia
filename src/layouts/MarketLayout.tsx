@@ -7,7 +7,7 @@ import CompleteProfileModal from "../components/modals/CompleteProfileModal";
 import useAuthDetails from "pages/auth/useAuthDetails";
 import { HeaderHeight } from "constants/layers";
 import { Link } from "react-router-dom";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import { convertToTitleCase } from "pages/network/GlobalNetwork";
 import AccessLayout from "./AccessLayout";
 import { ActivityStat } from "./FeedLayout";

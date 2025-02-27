@@ -9,7 +9,7 @@ import { Post } from "../api";
 import useCopyToClipboard from "common/hooks/useCopyToClipboard";
 import { useParams } from "react-router-dom";
 import { Challenge } from "api/challenge";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 
 interface Props {
   isOpen: boolean;

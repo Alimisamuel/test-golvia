@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import AccessLayout from "../../layouts/AccessLayout";
-import { PATHS } from "../../Routes/path";
+import { PATHS } from "../../Routes/routes.path";
 import { Helmet } from "react-helmet-async";
 import FeedLayout from "../../layouts/FeedLayout";
 import { Box, Button, Stack } from "@mui/material";

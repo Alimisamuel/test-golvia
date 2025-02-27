@@ -3,7 +3,7 @@ import { useGetBlogQuery } from "api/blog";
 import { ReactComponent as IconRight } from "assets/icons/arrow-right.svg";
 import AccessLayout from "layouts/AccessLayout";
 import { Link } from "react-router-dom";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import BlogItem from "./BlogItem";
 
 export default function Blog() {

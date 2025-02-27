@@ -5,7 +5,7 @@ import AccessLayout from "layouts/AccessLayout";
 import FeedLayout from "layouts/FeedLayout";
 import { UserListSkeleton } from "pages/network/GlobalNetwork";
 // import React from "react";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import FormatProfileType from "../Utils/FormatProfileType";
 import images from "constants/images";
 import useNavigateWithHash from "../hooks/useNavigateWithHash";

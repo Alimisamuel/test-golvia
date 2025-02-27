@@ -3,7 +3,7 @@ import React from "react";
 
 import { Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import Icons from "constants/Icons";
 
 const MarketPlace = () => {

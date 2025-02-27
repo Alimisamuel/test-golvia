@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ReactComponent as ChevronRightIcon } from "../assets/icons/chevron-right.svg";
 import { Box, Stack, Typography } from "@mui/material";
 import AccessLayout from "./AccessLayout";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
 import { clsx } from "clsx";

@@ -17,7 +17,7 @@ import images from "constants/images";
 import AccessLayout from "layouts/AccessLayout";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import { BsPeopleFill } from "react-icons/bs";
 import { useCreateConnect } from "pages/network/hooks/useCreateConnect";
 import { MdAccessTime } from "react-icons/md";

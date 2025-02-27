@@ -8,7 +8,7 @@ import { useSnackbar } from "notistack";
 import BackdropLoader from "components/loaders/Backdrop";
 import { loginWithGoogleAsync, selectAuth } from "../../../api/slice/auth";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 
 // type LocationState = {
 //   redirectTo?: string;

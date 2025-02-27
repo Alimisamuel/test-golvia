@@ -2,7 +2,7 @@ import { Box, LinearProgress, Typography } from "@mui/material";
 import React from "react";
 import logo from "../../assets/logo/border-logo.svg";
 import { useNavigate } from "react-router-dom";
-import { PATHS } from "../../Routes/path";
+import { PATHS } from "../../Routes/routes.path";
 
 const AccountSuccessfully = () => {
   const [progress, setProgress] = React.useState(0);

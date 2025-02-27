@@ -4,7 +4,7 @@ import RegistrationType from "../pages/auth/RegistrationType";
 import Feed from "pages/feeds";
 import GetStarted from "../pages/getStarted";
 import Network from "../pages/network/Network";
-import { PATHS } from "./path";
+import { PATHS } from "./routes.path";
 import VerifyOtp from "../pages/auth/VerifyOtp";
 import NoPage from "../pages/nopage";
 import { Privacy, PolicyLayouts, Terms, Cookies } from "../pages/policy";

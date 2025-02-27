@@ -7,7 +7,7 @@ import useAuthDetails from "pages/auth/useAuthDetails";
 import { HeaderHeight } from "constants/layers";
 import GlobalNetworkWidget from "pages/network/GlobalNetworkWidget";
 import { Link } from "react-router-dom";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import Ads from "components/Adverts/Ads";
 import FormatProfileType from "pages/settings/profile/Utils/FormatProfileType";
 import { useGetApi } from "api/hooks/useGetApi";

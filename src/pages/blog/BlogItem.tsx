@@ -3,7 +3,7 @@ import { ReactComponent as IconRight } from "assets/icons/arrow-right.svg";
 import { getTimeAgo } from "helpers/Formatters";
 import { Blog } from "models/blog";
 import { Link } from "react-router-dom";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 
 export default function BlogItem(props: { blog: Blog }) {
   const { blog } = props;

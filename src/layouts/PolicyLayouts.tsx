@@ -1,7 +1,7 @@
 import Header from "components/headers/Header";
 import React from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import {
   Box,
   Divider,

@@ -26,7 +26,7 @@ import Aos from "aos";
 import { useAppSelector } from "store/hooks";
 import { selectToken } from "api/slice/auth";
 import { Navigate, Link } from "react-router-dom";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import Head from "common/Head";
 
 interface TabPanelProps {

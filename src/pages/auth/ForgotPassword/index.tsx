@@ -5,7 +5,7 @@ import BackdropLoader from "components/loaders/Backdrop";
 import Icons from "constants/Icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 
 const ForgotPassword = () => {
   const [activeStep, setActiveStep] = useState<number>(1);

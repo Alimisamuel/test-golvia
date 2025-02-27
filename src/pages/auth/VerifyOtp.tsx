@@ -8,7 +8,7 @@ import {
 import React, { useState } from "react";
 import AuthLayout from "layouts/AuthLayout";
 import { useLocation, useNavigate } from "react-router-dom";
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import { resendOtp, verifyOtp } from "api/auth";
 import OtpInput from "pages/auth/OtpInput";
 import useAlert from "components/alert/useAlert";

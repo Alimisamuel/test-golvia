@@ -1,4 +1,4 @@
-import { PATHS } from "Routes/path";
+import { PATHS } from "Routes/routes.path";
 import { ReactComponent as ProfileIcon } from "assets/icons/user-square.svg";
 import { ReactComponent as PasswordIcon } from "assets/icons/lock.svg";
 // import { ReactComponent as NotificationIcon } from "assets/icons/notification.svg";
