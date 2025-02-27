@@ -10,6 +10,7 @@ import NoPage from "../pages/nopage";
 import { Privacy, PolicyLayouts, Terms, Cookies } from "../pages/policy";
 import ProfileSettings from "pages/settings/profile/Profile";
 import PasswordResetSettings from "pages/settings/passwordReset/PasswordReset";
+
 import NotificationSettings from "pages/settings/Notifications";
 import ActivityLog from "pages/settings/ActivityLog";
 import ProtectedRoute from "./ProtectedRoutes";
